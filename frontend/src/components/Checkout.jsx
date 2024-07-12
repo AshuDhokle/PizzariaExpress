@@ -3,15 +3,22 @@ import StripeCheckout from 'react-stripe-checkout'
 import Axios from 'axios';
 import {useDispatch} from 'react-redux'
 import { removeFromCart } from '../features/cart/cartSlice';
+import { useNavigate } from 'react-router-dom';
 const Checkout = (props) => {
     
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    
     const tokenHandler = async(token) =>{
       //console.log(token);
-      const amount = props.amount;
       const user = localStorage.getItem('User');
+      
+      const amount = props.amount;
       const cart = localStorage.getItem('cartItems')
       try {
+        if(!user){
+          navigate("/user/login")
+        }
         const response = await Axios.post('http://localhost:3000/payment',{token,amount,cart,user});
         
         try {

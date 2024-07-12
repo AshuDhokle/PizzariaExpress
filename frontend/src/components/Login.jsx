@@ -94,7 +94,7 @@ const Login = () => {
           </div>
           { alreadyLogged
               ?<div className='flex flex-col items-center justify-center'>
-                <Link to='/user/home' className='p-2 rounded-lg shadow-xl text-white font-semibold px-4 bg-green-300' > Buy Pizza </Link>
+                <Link to='/' className='p-2 rounded-lg shadow-xl text-white font-semibold px-4 bg-green-300' > Buy Pizza </Link>
               </div>
               :<form className="mt-8 space-y-6" onSubmit={handleSubmit}>
                 <div className="rounded-md shadow-sm -space-y-px">
@@ -123,7 +123,7 @@ const Login = () => {
           }
             <div className="text-center">
               <p className="mt-2 text-sm text-gray-600">Don't have an account?{' '}
-              <Link to='/user/signup' className="font-medium text-indigo-600 hover:text-indigo-500">Sign up</Link>
+              <Link to='/signup' className="font-medium text-indigo-600 hover:text-indigo-500">Sign up</Link>
               </p>
             </div>
             </div>

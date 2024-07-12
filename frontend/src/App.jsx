@@ -1,12 +1,9 @@
 import { useState } from 'react'
-import Navbar from './components/Navbar'
 import {Routes,Route} from 'react-router-dom'
 import './App.css'
-import Home from './components/Home'
 import Signup from './components/Signup'
 import Login from './components/Login'
 import Order from './components/Orders'
-import Cart from './components/Cart'
 import Admin from './adminComponents/admin'
 import AdminLogin from './adminComponents/adminLogin'
 import AddPizza from './adminComponents/addPizza'
@@ -14,23 +11,20 @@ import PizzaList from './adminComponents/pizzaList'
 import OrderList from './adminComponents/orderList'
 import UserList from './adminComponents/userList'
 import MainPage from './MainPage'
-import User from './components/User'
+import Menu from './components/Menu'
+import Navbar from './components/Navbar'
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    < div  className='absolute inset-0 overflow-auto bg-cover bg-center' style={{ backgroundImage: "url('https://thumbs.dreamstime.com/b/pizza-seamless-pattern-vector-pizza-pattern-abstract-background-background-useful-restaurant-identity-packaging-89205691.jpg')" }}>
+    < div  className='absolute inset-0 overflow-auto bg-cover bg-center'>
       
       <Routes>
         <Route path='/' element={<MainPage/>}/>
-        
-        <Route path='/user/*' element={<User/>}>
-         <Route path='home' element={<Home/>}/>
+         <Route path='menu' element={<Menu/>}/>
          <Route path='login' element={<Login/>}/>
          <Route path='signup' element={<Signup/>}/>
          <Route path='orders' element={<Order/>}/>
-         <Route path='cart' element={<Cart/>}/>
-        </Route>
         
         
         <Route path='/admin/*' element={<Admin/>}>

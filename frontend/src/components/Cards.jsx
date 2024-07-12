@@ -88,7 +88,7 @@ const Cards = (props) => {
                         </div>
                     </div>
                     <div className='m-1 flex flex-row items-center justify-between'>
-                        <h1 className='m-2 text-xl bg-gradient-to-r from-green-500 to-sky-400 bg-clip-text text-transparent font-semibold'>Price: {order.price} Rs/-</h1>
+                        <h1 className='m-2 bg-gradient-to-r from-green-500 to-sky-400 bg-clip-text text-transparent font-semibold'> {order.price} INR /-</h1>
                         <button className='bg-sky-400  p-2 rounded-xl shadow-xl text-white' type='submit'>
                             Add to cart
                         </button>

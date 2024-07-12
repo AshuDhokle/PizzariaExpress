@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import React, { useState } from 'react';
-import {Link,useNavigate} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
 import { login } from '../features/user/userSlice';
 import ReactLoading from 'react-loading';
@@ -11,7 +11,7 @@ const Signup = () => {
   
     const dispatch = useDispatch();
 
-    const navigate = useNavigate();  
+    //const navigate = useNavigate();  
     const [confirmPassword, setConfirmPassword] = useState('');
     const [loading,setLoding] = useState(false);
     const [message,setMessage] = useState('');
@@ -107,7 +107,7 @@ const Signup = () => {
            {
             (registered || alreadyLogged)
             ?  <div className='flex flex-col items-center justify-center'>
-               <Link to='/user/home' className='p-2 rounded-lg shadow-xl text-white font-semibold px-4 bg-green-300' > Buy Pizza </Link>
+               <Link to='/' className='p-2 rounded-lg shadow-xl text-white font-semibold px-4 bg-green-300' > Buy Pizza </Link>
                </div>
             : <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
                <div className="rounded-md shadow-sm -space-y-px">
@@ -164,7 +164,7 @@ const Signup = () => {
                 <div className="text-center">
                     <p className="mt-2 text-sm text-gray-600">
                         Already have an account?{' '}
-                        <Link to='/user/login' className="font-medium text-indigo-600 hover:text-indigo-500">
+                        <Link to='/login' className="font-medium text-indigo-600 hover:text-indigo-500">
                             Log in
                         </Link>
                     </p>

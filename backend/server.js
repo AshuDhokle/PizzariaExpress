@@ -1,7 +1,5 @@
 import 'dotenv/config'
 import Express, { json } from 'express'
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
 import {Pizza } from './database/pizza-model.js'
 import { Connection } from './database/connection.js';
 import cors from 'cors'
@@ -12,18 +10,11 @@ import Stripe from 'stripe';
 const stripe = new Stripe(process.env.STRIPE_SECRECT_KEY);
 import { v4 as uuidv4 } from 'uuid';
 import { Admin } from './database/admin-model.js';
-//import { Mongoose } from 'mongoose';
-//import json from 'body-parser/lib/types/json.js';
-
-//App Configurations
 
 const app = Express();
 app.use(cors());
-//app.use(bodyParser.urlencoded({extended:true}))
 app.use(Express.json());
 app.use(Express.static('public'));
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 const port = 3000 || process.env.PORT;
 
@@ -34,17 +25,10 @@ Connection._connection()
 
 //Routes 
 
-app.route('/')
-   .get((req,res)=>{
-    res.json('Working')
-   })
-
 app.route('/pizzas')
-   .get(async(req,res)=>{
-      
+   .get(async(req,res)=>{      
       try {
          const data = await Pizza.find();
-         //console.log(data);
          if(data)
            return res.status(200).json(data)  
          else
@@ -52,9 +36,7 @@ app.route('/pizzas')
       } catch (error) {
            return res.status(400).json("Someting went Wrong")         
       }
-      
-       //console.log(data);
-   })
+ })
 
 app.route('/pizza/:id')
    .get(async(req,res)=>{
@@ -147,10 +129,8 @@ app.route('/orders')
       }
    })
    .post(async(req,res)=>{
-      //   console.log(req.body.response.data);
         
         try {
-          // const jsonString = Object.keys(req.body)[0];
            const obj = req.body
            const user = JSON.parse(obj.user);
            const cartItem = JSON.parse(obj.cart);
@@ -169,7 +149,6 @@ app.route('/orders')
             street:obj.response.data.shipping.address.line1,
             country:obj.response.data.shipping.address.country
            }
-           // console.log(JSON.parse(obj.response.config.data));
            const newOrder = new Orders({
                name : user.name,
                email : user.email,
@@ -180,7 +159,6 @@ app.route('/orders')
                isDelivered:false,
                transactionId:obj.response.data.id,
            })
-           //console.log(newOrder);
             const response = await newOrder.save() 
            
            if(response){
@@ -198,7 +176,6 @@ app.route('/orders')
 app.route('/order/:id')
    .put(async(req,res)=>{
       const id = req.params.id;
-      //console.log(id);
       try {
          const response = await Orders.updateOne({_id:id},{$set:{isDelivered:true}});
          if(response){
@@ -225,11 +202,9 @@ app.route('/ordersList')
 app.route('/signup')
    .post(async(req,res)=>{
       try {
-         //const jsonString = Object.keys(req.body)[0];
          const obj = req.body
          
          const existingUser = await User.findOne({phone:obj.phone})
-         //console.log(existingUser);
          if(!existingUser){
             const newUser = new User({
               name:obj.name,
@@ -237,10 +212,8 @@ app.route('/signup')
               phone:parseInt(obj.phone),
               adderess:obj.adderess,
               password: await bcrypt.hash(obj.password,8),            
-              //adderess:req.body.adderess
             })
             const response = await newUser.save() 
-            //console.log(response);
             if(response){
              return res.status(200).json(response)
             }else{
@@ -249,13 +222,12 @@ app.route('/signup')
          }else{
             return res.status(403).json('User Already exists');
          }
-         //console.log(response);         
       } catch (error) {
          return res.status(400).send('Someting Went Wrong')
       }  
       
       
-      //console.log(req.body);
+      
 
    })
 
@@ -264,14 +236,12 @@ app.route('/login')
       
       try {
             const obj = req.body
-           // console.log(obj);
          const existingUser = await User.findOne({phone:obj.phone})
          
          if(!existingUser){
            return res.status(404).json('User Not Found');
          }else{
             const checkPass = await bcrypt.compare(obj.password,existingUser.password)
-            //console.log(checkPass);
             if(!checkPass){
               return res.status(401).send('wrong Password')
             }else{
@@ -287,9 +257,7 @@ app.route('/login')
 app.route('/payment')
    .post( async (req,res)=>{
       const token = req.body.token;
-      //const amount = req.body.amount;
       const cart = JSON.parse(req.body.cart);
-      //const user = JSON.parse(req.body.user);
       const idempotencyKey = uuidv4();
       const customer = await stripe.customers.create({
          email : token.email,

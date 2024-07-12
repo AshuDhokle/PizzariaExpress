@@ -15,15 +15,16 @@ const Orders = () => {
           }
         })
         if(response.status === 200){
-           // console.log(response);
             setOrder(response.data.map((item)=>({
+              id:item._id,
               email:item.email,
               userName:item.name,
               orderAmount:item.orderAmount,
               orderItem:item.orderItems,
               address:item.shippingAddress,
               transactionId:item.transactionId,
-              isDelivered:item.isDelivered
+              isDelivered:item.isDelivered,
+              date:item.createdAt
             }))
             );
             setLoading(false);          
@@ -35,7 +36,7 @@ const Orders = () => {
     },[])
   
     return (
-    <div className='m-2 p-2 bg-blue-400 grid grid-col-1 lg:grid-cols-3 '>
+    <div className='m-2 p-2 grid grid-col-1 lg:grid-cols-3 '>
         {
           loading  
           ? <h1>loading ...</h1>

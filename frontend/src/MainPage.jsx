@@ -1,31 +1,46 @@
-import React from 'react';
-import { Link,Routes,Route } from 'react-router-dom';
-
+import React,{useEffect,useState} from 'react';
+import axios from 'axios'
+import Navbar from './components/Navbar';
+import { Stack,Box, ImageList, ImageListItem } from '@mui/material';
+import Banner from './components/Banner';
+import menu from './utils/menu';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux'
+import { addPizzas } from './features/pizzas/pizzaSlice'
 const MainPage = () => {
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    
+    const getPizzas = async() =>{
+      const response = await axios.get('http://localhost:3000/pizzas');
+      const data = response.data
+      dispatch(addPizzas(data))  
+    }
+
+    getPizzas(); 
+  },[])
   return (
     <div className=' h-full'>
-    <nav className='p-2 bg-white shadow-xl flex flex-row items-center justify-between'>
-        <div className='text-red-400 text-xl font-nunito'>Amba Nagri</div>
-        <div>
-            <Link to='/user/home' className='m-2'>Home</Link>
-            <Link to='/Admin' className='m-2'>Admin</Link>
-        </div>
-    </nav>
-    <div className='m-4 p-4 lg:px-64 grid grid-col-1 md:grid-cols-3  bg-gradient-to-br  from-red-700 from-70%  to-white to-30% text-white' >
-      <div className='self-center'>
-        <div className=' font-bold text-3xl mb-4'>
-          <h1 className=''>The Best Pizza</h1>
-          <h1 className=''>In India</h1>
-        </div>
-        <div className='my-4'>
-          <h1 className='mb-4'>Free Delivery for all orders over Rs.400/-</h1>
-          <Link to='/user/home' className=' px-4 py-2 bg-yellow-300 rounded-xl shadow-xl text-red-600 font-bold'>Order Now</Link>
-        </div>
-      </div>
-      <div className=' col-span-2'>
-        <img src='images/mainPage.png' className=''/>
-      </div>
-    </div>
+     <Navbar />
+     <Stack direction={'column'}>
+       <Banner/>
+       <Box sx={{display:'flex',flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
+        <h1 className='text-3xl '>Order Now!</h1>
+          <ImageList cols={3} >
+            {
+              menu.map((item)=>(
+               <ImageListItem key = {item.id} className='menu-list m-2 flex flex-col items-center justify-center'>
+                <Link to={'/menu'} className='menu-item flex flex-col items-center justify-center bg-slate-300 '>
+                  
+                  <h1>{item.name}</h1>
+                </Link>
+                </ImageListItem>
+              ))
+            }
+          </ImageList>
+
+       </Box>
+     </Stack>
     </div>
   );
 };
