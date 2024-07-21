@@ -26,7 +26,7 @@ const AdminLogin = () => {
     const handleSubmit = async (e) =>{
         e.preventDefault()
         try {
-            const response = await Axios.post('http://localhost:3000/adminLogin',admin);
+            const response = await Axios.post('http://localhost:3000/api/admin/auth/login',admin);
             if(response.status === 200){
                 dispatch(loginAdmin(response.data[0]))
                 setMessage('')

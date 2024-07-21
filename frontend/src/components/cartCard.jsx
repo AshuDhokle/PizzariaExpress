@@ -1,7 +1,8 @@
 import React from 'react'
 import { GrFormSubtract } from "react-icons/gr";
 import { IoIosAdd } from "react-icons/io";
-
+import { FaLongArrowAltRight } from "react-icons/fa";
+import menu from '../utils/menu';
 import { useDispatch } from 'react-redux';
 import { removeFromCart,addToCart , selectCart} from '../features/cart/cartSlice';
 const CartCard = ({item}) => {
@@ -13,7 +14,7 @@ const CartCard = ({item}) => {
           dispatch(addToCart({pizza:item.pizza,size:item.size,quantity:parseInt(item.quantity+1)}))
         }
     }
-    
+    console.log(menu[item.pizza.category]);
     const handleSubtract = (item) =>{
         if(item.quantity<=1){
           handleDispatch(item)
@@ -28,17 +29,19 @@ const CartCard = ({item}) => {
 
     return (
     <div className='flex flex-col w-80'>
-        <div className='flex flex-row'>
-         <img src={item.pizza.img} alt={item.pizza.name} className='size-20 m-2 rounded-3xl'/>
-         <div className='flex flex-col items-center justify-center'>
-         <h1 className='m-2 text-xl font-nunito font-semibold'>{item.pizza.name}</h1>
-         <p className='font-bold'>{item.price}/-</p>
-         </div> 
-        </div>
-        <div className='flex flex-row items-center'>
-         <IoIosAdd className='size-6 m-2 hover:bg-green-300 rounded-full' onClick={()=>handleAdd(item)}/> 
+        <div className='flex flex-row items-center justify-between'>
+         <div className='flex flex-row items-center'>
+         <FaLongArrowAltRight className='size-6 text-green-500' />
+         
+         <h1 className='m-1 text-lg font-nunito font-semibold'>{item.pizza.name}</h1>
+         <p className='mx-1 text-gray-500 text-sm'>{menu[item.pizza.category-1].name}</p>
+         </div>
+         <p className='font-semibold'>{item.price}/-</p>
+         </div>
+        <div className='m-1 flex flex-row items-center'>
+         <IoIosAdd className='size-6 mx-2 text-white bg-violet-500 hover:bg-violet-400 rounded-full' onClick={()=>handleAdd(item)}/> 
          <p className='text-xl mb-1'>{item.quantity}</p>
-         <GrFormSubtract className='size-6 m-2 hover:bg-green-300 rounded-full' onClick={()=>handleSubtract(item)}/>
+         <GrFormSubtract className='size-6 mx-2 text-white bg-violet-500 hover:bg-violet-400 rounded-full' onClick={()=>handleSubtract(item)}/>
         </div>
     </div>
   )

@@ -22,7 +22,7 @@ const Checkout = (props) => {
         const response = await Axios.post('http://localhost:3000/payment',{token,amount,cart,user});
         
         try {
-          const orders = await Axios.post('http://localhost:3000/orders',{response,amount,cart,user});
+          const orders = await Axios.post('http://localhost:3000/api/user/orders/placeOrder',{response,amount,cart,user});
                     
 
           if(orders.status === 200){

@@ -41,50 +41,34 @@ const Signup = () => {
           try {
             setLoding(true);
             //const obj = JSON.stringify(newUser)
-            const response = await Axios.post('http://localhost:3000/signup',newUser);
-            return response;
+            const response = await Axios.post('http://localhost:3000/api/user/auth/signup',newUser);
+            const data = response.data;
+
+            if(data){
+              dispatch(
+                login({
+                 data
+                })
+               )
+               
+              setMessage('Registered Successfully')
+              setRegistered(true)
+            }else {
+              throw new Error(data)
+            }
+
           } catch (error) {
-              console.log(`Error fetching data : ${error.response.status}`); 
-              throw new Error(error.response.status);   
+            if(error.response.status===403){
+              setMessage('User Already Exists! Please try different phone number');
+            }else{
+              setMessage('Someting went wrong!')
+            }
+          }finally{
+            setLoding(false);
           }
         }
-        try {
-          if(newUser.password === confirmPassword){
-           const response = (await sendData());
-        //console.log(response.status);
-        setLoding(false);
-           if(response.status===200){
-            const user = response.data;
-          
-            dispatch(
-             login({
-              name:user.name,
-              email:user.email,
-              phone:parseInt(user.phone),
-              password:user.password,
-              _id:user._id
-             })
-            )
-            setMessage('Registered Successfully')
-            setRegistered(true)
-            // navigate('/')
-            //setMessage('Registered Successfully')
-           } 
-          //navigate('/')
-        }
-        else{
-          alert(`Passwords don't match`)
-        }
-        } catch (error) {
-          setLoding(false);
-          const status = parseInt(error.message);
-          if(status===403){
-            setMessage('User Already Exists! Please try different phone number');
-          }else{
-            //setRegistered(true)
-            setMessage('Someting went wrong!')
-          }
-        }
+        
+        sendData();  
          
     };
 

@@ -23,57 +23,37 @@ const Login = () => {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        // Add your login logic here, for example, calling an authentication API
-        // console.log('Email:', user.phone);
-        // console.log('Password:', user.password);
         
-          const fetchData = async()=>{
-            try {
-              //const obj = JSON.stringify(user) 
-              const response = await Axios.post(`http://localhost:3000/login`,user)
-              return response;
-            } catch (error) {
-              console.log(`Error Fetcing Data : ${error.response.status}`);
-              
-              throw new Error(error.response.status);
-            }
-          } 
+        const fetchData = async()=>{
+          setLoading(true)
           try {
-            setLoading(true);
-            const data = await fetchData();
-            
-             
-            if(data.status === 200){
-              setLoading(false);
-                const logedUser = data.data;
-                console.log(logedUser);
-                dispatch(
-                 login({
-                  name:logedUser.name,
-                  email:logedUser.email,
-                  phone:logedUser.phone,
-                  password:logedUser.password,
-                  _id:logedUser._id
-                 })
-                )
-                //setLoggedIn(true);
-                //navigate('/')
-            }
-        } 
-        catch (error) {
-           
-          setLoading(false);
-          const status = parseInt(error.message);
-          
-          if(status === 404){
-             setMessage('Invalid Phone Number')
-            }else if(status === 401){
-              setMessage(`Password dosen't match`);
+            const response = await Axios.post(`http://localhost:3000/api/user/auth/login`,user)
+            const data = response.data;
+            if(data){
+              dispatch(
+                login({
+                 data
+                })
+              )
+              setMessage('');
             }else{
-            setMessage('An error occurred while logging in. Please try again.'); 
-           }
+              throw new Error(data);
+            }
+          }catch (error) {
+            if(error.response.status === 401){
+              setMessage('Wrong Credentials')
+            }else if(error.response.status === 404){
+              setMessage('User not found')
+            }else{
+              setMessage('Someting went Wrong')
+            }
+          }finally{
+            setLoading(false)
+          }
+
         }
 
+        fetchData();
          
     };
     

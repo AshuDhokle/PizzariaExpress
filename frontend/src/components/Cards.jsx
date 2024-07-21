@@ -1,38 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import { GiFullPizza } from 'react-icons/gi';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../features/cart/cartSlice';
-import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { IoCartOutline } from "react-icons/io5";
+import { FormControl, InputLabel, MenuItem, Select,Button, Box } from '@mui/material';
 
-const Cards = (props) => {
+const Cards = ({pizza}) => {
     const dispatch = useDispatch();
     const [order, setOrder] = useState({
         size: '',
         quantity: 0,
         price: 0,
     });
-
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        const idx = props.pizza.size.findIndex((item) => item === order.size);
-        if (idx !== -1) {
-            const price = props.pizza.price[idx] * order.quantity;
-            setOrder((prevState) => ({ ...prevState, price }));
-        }
-    }, [order.size, order.quantity]);
-
+    const [selectedSize,setSelectedSize] = useState(0);
+    console.log(selectedSize);
+    
+ 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         dispatch(
             addToCart({
-                pizza: props.pizza,
-                size: order.size,
-                quantity: parseInt(order.quantity),
+                pizza: pizza,
+                size: pizza.size[selectedSize],
+                quantity: 1,
             })
         );
 
@@ -46,54 +38,41 @@ const Cards = (props) => {
     };
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setOrder((prevState) => ({ ...prevState, [name]: value }));
+        setSelectedSize(e.target.value)
     };
 
     return (
-        <div className='m-2 p-0 h-fit flex flex-col items-center justify-center rounded-lg shadow-xl bg-white '>
-            <h1 className='self-start shadow-xl bg-blue-400 p-2 text-white w-full text-lg text-center'>{props.pizza.name}</h1>
+        <div className='m-2 w-60 py-2 h-fit justify-self-center flex flex-col items-center rounded-lg shadow-xl bg-white '>
 
-            <img className='m-2 size-48 rounded-xl' src={props.pizza.img} alt='Pizza' />
-            {props.pizza.veg ? (
-                <img src='https://i.pinimg.com/736x/e4/1f/f3/e41ff3b10a26b097602560180fb91a62.jpg' className='size-4 self-start ml-2' alt='Veg' />
-            ) : (
-                <img src='https://thumbs.dreamstime.com/b/non-vegetarian-sign-veg-logo-symbol-red-color-food-grade-circle-312777489.jpg' className='size-4 self-start ml-2' alt='Non-Veg' />
-            )}
+            <img className='w-60 h-48 ' src={pizza.img} alt='Pizza' />
+            <div className='mb-2 p-2 w-full flex flex-row items-center '>
+            <h1 className=' text-gray-500 w-full text-lg '>{pizza.name}</h1>
+            <img  src={pizza.veg ? '/images/veg.png' : '/images/non-veg.png'} className='size-6'/> 
+            </div>
             <div>
-                <form className='' onSubmit={handleSubmit}>
+                <Box component={'form'} onSubmit={handleSubmit}>
+                    <p className='font-normal text-gray-600'>Select Varient : </p>
                     <div className='flex flex-row justify-center items-center'>
-                        <div className='w-1/2 m-2 flex flex-col items-center justify-center'>
-                            
-                            <select className='p-2 rounded-xl border-2' name='size' id='select-varients' onChange={handleInputChange}>
-                                <option>Select One</option>
-                                {props.pizza.size.map((varient, idx) => (
-                                    <option value={varient} key={idx}>
-                                        {varient}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className='w-1/2 flex flex-col items-center justify-center'>
-                            
-                            <select className='w-32 m-2 p-2 rounded-xl border-2 ' name='quantity' id='quantity' onChange={handleInputChange}>
-                                <option>Select One</option>
+                        <Select
+                           color='success'
+                           value={selectedSize}
+                           defaultValue={0}
+                           onChange={handleInputChange}
+                           sx={{width:220,color:'black'}}
+                        >
+                            <MenuItem value={0}>{pizza.size[0]}</MenuItem>
+                          {pizza.size.map((sz,idx)=>(
+                             idx>0 && <MenuItem key={idx} value={idx} >{sz}</MenuItem>
+                          ))}
+                        </Select>
 
-                                {Array.from({ length: 10 }, (_, index) => index + 1).map((x) => (
-                                    <option value={x} key={x}>
-                                        {x}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
                     </div>
-                    <div className='m-1 flex flex-row items-center justify-between'>
-                        <h1 className='m-2 bg-gradient-to-r from-green-500 to-sky-400 bg-clip-text text-transparent font-semibold'> {order.price} INR /-</h1>
-                        <button className='bg-sky-400  p-2 rounded-xl shadow-xl text-white' type='submit'>
-                            Add to cart
-                        </button>
-                    </div>
-                </form>
+                    <Button type='submit' sx={{mt:2,width:220 ,backgroundColor:'#06D001' ,display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-around',":hover":{backgroundColor:'#40A578'}}}> 
+                        <p className='text-white font-nunito text-lg'>{pizza.price[selectedSize]}/-</p> 
+                        <IoCartOutline className='size-8 text-white cursor-pointer' />
+                    </Button> 
+                   
+                </Box>
             </div>
             <ToastContainer />
         </div>
@@ -101,3 +80,6 @@ const Cards = (props) => {
 };
 
 export default Cards;
+
+
+ 

@@ -6,6 +6,7 @@ const pizza = new Mongoose.Schema({
     price:[Number],
     img:String,
     veg:Boolean,
+    category:Number
 })
 
 const Pizza = Mongoose.model('Pizza',pizza)

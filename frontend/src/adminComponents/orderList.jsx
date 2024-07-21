@@ -11,7 +11,7 @@ const OrderList = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await Axios.get('http://localhost:3000/ordersList');
+        const response = await Axios.get('http://localhost:3000/api/admin/order/orderList');
         setOrderList(response.data);
         setLoading(false);
       } catch (error) {
@@ -101,7 +101,7 @@ const DeliveryDetails = (props) =>{
   const [check,setCheck] = useState(props.delivered);
   const [trigger,setTrigger] = useState(false);
   const updateDelivery = async(id) =>{
-      const response = await Axios.put(`http://localhost:3000/order/${id}`)
+      const response = await Axios.put(`http://localhost:3000/api/admin/order/${id}`)
       if(response){
         console.log(response);
         setCheck(true);

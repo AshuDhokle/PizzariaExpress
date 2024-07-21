@@ -15,7 +15,7 @@ const EditPizza = () => {
   useEffect(()=>{
     const fetchData = async()=>{
         try {
-            const response = await Axios.get(`http://localhost:3000/pizza/${id}`)
+            const response = await Axios.get(`http://localhost:3000/api/admin/pizza/${id}`)
             setPizza(response.data);
             setLoading(false);
             //console.log(response.data);
@@ -29,7 +29,7 @@ const EditPizza = () => {
 
   const handleSubmit = async() =>{
     //e.preventDefault();
-    const response = await Axios.put(`http://localhost:3000/pizza/${id}`,pizza);
+    const response = await Axios.put(`http://localhost:3000/api/admin/pizza/${id}`,pizza);
     console.log(response);
     
    

@@ -1,16 +1,14 @@
-import React,{useEffect, useState,useRef} from 'react'
+import React,{ useState} from 'react'
 import {Link,useNavigate} from 'react-router-dom'
 import {useDispatch ,useSelector} from 'react-redux'
 import { logout,selectUser } from '../features/user/userSlice'
 
 import { FaRegCircleUser } from "react-icons/fa6";
-import { Transition } from '@headlessui/react';
 import CartDrawer from './cartDrawer'
 import { Button,Menu,MenuItem } from '@mui/material';
 const Navbar = () => {
   
   const navigate = useNavigate();
-  let menuRef = useRef();
 
   const user = useSelector(selectUser);
   //console.log(user);
@@ -64,11 +62,9 @@ const UserMenu = () => {
     dispatch(logout());
     navigate('/')
   };
-  const goToOrders = () =>{
-    navigate('/orders')
-  }
+  
   const goToProfile = () =>{
-    navigate('/profile')
+    navigate(`/profile/${user._id}`)
   }
   return(
     <div>
@@ -87,7 +83,6 @@ const UserMenu = () => {
              'aria-labelledby': 'basic-button',
             }}>
               <MenuItem onClick={handleClose}><Button onClick={goToProfile}>Profile</Button></MenuItem>
-              <MenuItem onClick={handleClose}><Button onClick={goToOrders}>Orders</Button></MenuItem>
               <MenuItem onClick={handleClose}><Button onClick={handleLogout}>Logout</Button></MenuItem>
             </Menu>
 

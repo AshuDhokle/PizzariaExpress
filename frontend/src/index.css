@@ -20,11 +20,7 @@
 }
 
 /* Media query for smaller screens */
-@media (max-width: 768px) {
-  body {
-    background-size: contain;
-  }
-}
+
 
 ::-webkit-scrollbar {
     width: 5px; /* Set the width of the scrollbar */
@@ -58,3 +54,8 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+
+.map_dim{
+  width: 300px;
+  height: 400px;
+}

@@ -5,8 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const AddPizza = () => {
   
   const navigate = useNavigate();
-
-  // FormData ------------------------------------------ 
+ 
 
   const [formData, setFormData] = useState({
     name: '',
@@ -20,8 +19,6 @@ const AddPizza = () => {
       [name]: type === 'checkbox' ? checked : value,
     }));
   };
-
-  //Form Submission ------------------------------------
 
   const handleSubmit = async(e) => {
     e.preventDefault();
@@ -41,23 +38,16 @@ const AddPizza = () => {
       price:p,
     } 
     try {
-      const response = await Axios.post('http://localhost:3000/pizzaList',data)
+      const response = await Axios.post('http://localhost:3000/api/admin/pizza/addPizza',data)
       if(response.status === 200){
         navigate('/admin/pizzaList')
       }
     } catch (error) {
       console.log(error);
     }
-     // You can send this data to your backend or perform other actions
+     
   };
   
-  //Form Submission ----------------------------------
-
-  //FormData ----------------------------------------
-  
-
-  //Tags------------------------------------
-
   const [tags, setTags] = useState([])
 
   function handleKeyDown(e){

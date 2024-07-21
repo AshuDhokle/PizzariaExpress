@@ -10,7 +10,7 @@ const UserList = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await Axios.get('http://localhost:3000/users');
+        const response = await Axios.get('http://localhost:3000/api/admin/users');
         setUserList(response.data);
         setLoading(false);
       } catch (error) {

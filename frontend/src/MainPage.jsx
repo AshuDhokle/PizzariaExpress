@@ -5,25 +5,15 @@ import { Stack,Box, ImageList, ImageListItem } from '@mui/material';
 import Banner from './components/Banner';
 import menu from './utils/menu';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux'
-import { addPizzas } from './features/pizzas/pizzaSlice'
-const MainPage = () => {
-  const dispatch = useDispatch();
-  useEffect(()=>{
-    
-    const getPizzas = async() =>{
-      const response = await axios.get('http://localhost:3000/pizzas');
-      const data = response.data
-      dispatch(addPizzas(data))  
-    }
 
-    getPizzas(); 
-  },[])
+import { contents } from './utils/banner';
+const MainPage = () => {
+  
   return (
     <div className=' h-full'>
      <Navbar />
      <Stack direction={'column'}>
-       <Banner/>
+       <Banner use={'homePage'} contents={contents}/>
        <Box sx={{display:'flex',flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
         <h1 className='text-3xl '>Order Now!</h1>
           <ImageList cols={3} >

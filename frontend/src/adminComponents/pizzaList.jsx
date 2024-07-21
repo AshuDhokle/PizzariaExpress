@@ -13,7 +13,7 @@ const PizzaList = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await Axios.get('http://localhost:3000/pizzas');
+        const response = await Axios.get('http://localhost:3000/api/admin/pizza');
         setPizzaList(response.data);
         setLoading(false);
       } catch (error) {
@@ -66,8 +66,8 @@ const PizzaList = () => {
 const PizzaOperation = ({pizza}) =>{
   const [trigger,setTrigger] = useState(false);
   const handleDelete = async(id) =>{
-    console.log(id);
-    const response = await Axios.delete(`http://localhost:3000/pizza/${id}`)  
+    
+    const response = await Axios.delete(`http://localhost:3000/api/admin/pizza/${id}`)  
     if (response.status === 200){
       toast('Pizza Deleted SuccessFully')
       setTrigger(false);

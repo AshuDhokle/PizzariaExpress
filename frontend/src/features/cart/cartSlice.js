@@ -11,8 +11,7 @@ export const cartSlice = createSlice({
     initialState,
     reducers:{
         addToCart: (state,action)=>{
-            
-            
+   
             const findIdx = (sz,pizza) =>{
                 let res = -1;
                 for(let i = 0;i<pizza.size.length;i++){

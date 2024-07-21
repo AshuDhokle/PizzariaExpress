@@ -1,13 +1,20 @@
 import Mongoose from "mongoose";
 
+const addressSchema = new Mongoose.Schema({
+    cat:{type:String,required:true},
+    address:{type:String,required:true}
+});
+
 const user = new Mongoose.Schema({
-    name:String,
-    email:String,
-    phone:Number,
-    adderess:String,
-    password:String,
+    name:{ type: String, required: true },
+    email:{ type: String, required: true, unique: true },
+    phone:{type:Number,required:true, unique:true},
+    addresses:{type:[addressSchema]},
+    password:{type:String,required:true},
    // adderess:String
 })
+
+
 
 const User = Mongoose.model('user',user);
 

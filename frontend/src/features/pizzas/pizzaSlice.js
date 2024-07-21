@@ -10,7 +10,6 @@ const pizzaSlice = createSlice({
     reducers:{
         addPizzas: (state,actions)=>{
             const currPizzaList = actions.payload;
-            console.log(currPizzaList);
             state.pizzas = currPizzaList; 
           //  console.log(state.pizzas);
         },
