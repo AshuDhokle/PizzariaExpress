@@ -9,6 +9,7 @@ import {loadStripe} from '@stripe/stripe-js';
 import AddAddress from './AddAddress';
 import axios from 'axios';
 import {couponCodes} from '../utils/coupon'
+import { selectAddress } from '../features/address/addressSlice';
 const CartDrawer = () => {
   const [open, setOpen] = useState(false);
   const cart = useSelector(selectCart);
@@ -165,8 +166,8 @@ const SelectAddress = ({deliveryAddress,setDeliveryAddress}) =>{
   // const makeAddressString = (address) => {
   //   const str = address.street + ', ' + address.city + 
   // }
-  const user = useSelector(selectUser);
-
+  const addresses = useSelector(selectAddress);
+  console.log(addresses);
   const handleChange = (e) =>{
     setDeliveryAddress(e.target.value)
   }
@@ -182,8 +183,8 @@ const SelectAddress = ({deliveryAddress,setDeliveryAddress}) =>{
            onChange={handleChange}
            sx={{width:300,color:'black'}}
           >
-          {
-            user.addresses.map((address,idx)=>(
+          {addresses && addresses.length > 0 &&
+            addresses.map((address,idx)=>(
               <MenuItem key={idx} value={address}>{address.address}</MenuItem>
             ))
           }

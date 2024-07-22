@@ -5,6 +5,7 @@ import {useDispatch,useSelector} from 'react-redux'
 import { selectUser } from '../features/user/userSlice';
 import { login } from '../features/user/userSlice';
 import ReactLoading from 'react-loading';
+import { addAddress,addAddresses } from '../features/address/addressSlice';
 
 const Login = () => {
     
@@ -30,11 +31,8 @@ const Login = () => {
             const response = await Axios.post(`http://localhost:3000/api/user/auth/login`,user)
             const data = response.data;
             if(data){
-              dispatch(
-                login({
-                 data
-                })
-              )
+              dispatch(login({data}))
+              dispatch(addAddresses(data.addresses))
               setMessage('');
             }else{
               throw new Error(data);

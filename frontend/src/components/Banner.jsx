@@ -1,50 +1,23 @@
 import React,{useState,useEffect} from 'react'
-import { Box, Slide, Card,CardMedia,Typography } from '@mui/material';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa6';
+import { Box,Typography,Button, Stack } from '@mui/material';
+import { FaChevronRight } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
+
 const Banner = ({use,contents}) => {
-  const [slideIn, setSlideIn] = useState(true);
-  const [slideDirection, setSlideDirection] = useState();
-  const [index, setIndex] = useState(0);
-  const content = contents[index];
-  const numSlides = contents.length; 
+   const navigate = useNavigate();
   
-  const handleClick = (direction) => {
-    const increment = direction === "left" ? -1 : 1;
-    const newIndex = (index + increment + numSlides) % numSlides;
-    const oppDirection = direction === "left" ? "right" : "left";
-    setSlideDirection(direction);
-    setSlideIn(false);
-
-    setTimeout(() => {
-      setIndex(newIndex);
-      setSlideDirection(oppDirection);
-      setSlideIn(true);
-    }, 500);
-  };
-  
-  const size = use == 'homePage' ? {height:'500px',width:'700px'} : {height:'300px',width:'400px'}   
   return (
-    <div>
-        <Box sx={{display:'flex', direction:'row', alignItems:'center', justifyContent:'center', p:2}}>
-        <FaArrowLeft className='size-6' onClick={() => handleClick("left")} />
-          <Slide in={slideIn} direction={slideDirection}>
-          <Box sx={{p:4}}>
-          <Card>
-            <CardMedia
-              component="img"
-              height="200"
-              image={content.imgSrc} 
-              alt={content.title} 
-              sx={size}   
-            />
-          </Card>
-        </Box>
-            
-          </Slide>
-
-        <FaArrowRight className='size-6' onClick={() => handleClick("right")}/>
-       </Box>
-    </div>
+  <Stack direction={'row'} sx={{width:1,height:500 ,justifyContent:'space-around',backgroundColor:'#E4003A'}}>
+    <Box sx={{p:2, mt:20  }}>
+      <Typography variant='h3' sx={{my:2,color:'#FFB200', lineHeight:1}}>We Make 'Em <br/> Fresh & Hot Just For You</Typography>
+      <Typography variant='h6' sx={{my:1,color:'orange'}} >The Fastest Pizza Delivery in Town</Typography>    
+      <Button onClick={()=>navigate('/menu')} sx={{color:'white',backgroundColor:'#FFB200', borderRadius:2, ":hover":{backgroundColor:'#EB5B00'}}}>Get Started <span><FaChevronRight /></span></Button>
+    </Box>
+    <Box sx={{width:300,height:300,mt:10, borderRadius:3}}>
+      <img src='images/pizzaBanner.png' alt='pizzaBanner'/>
+    </Box> 
+  </Stack> 
+       
   )
 }
 
