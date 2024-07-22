@@ -28,7 +28,7 @@ const CartDrawer = () => {
         address: deliveryAddress
       }
       
-      const response = await axios.post('https//localhost:3000/api/payment/create-checkout-session',body)
+      const response = await axios.post('http//localhost:3000/api/payment/create-checkout-session',body)
       const session = await response.data;
       const result = await stripe.redirectToCheckout({
         sessionId : session.id,
