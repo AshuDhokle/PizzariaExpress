@@ -1,27 +1,23 @@
 import Axios from 'axios';
-import React, { useState,useEffect } from 'react';
-import {Link,useNavigate} from 'react-router-dom'
+import React, { useState } from 'react';
+import {Link} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
 import { selectUser } from '../features/user/userSlice';
 import { login } from '../features/user/userSlice';
 import ReactLoading from 'react-loading';
-import { addAddress,addAddresses } from '../features/address/addressSlice';
+import { addAddress } from '../features/address/addressSlice';
 
 const Login = () => {
     
     const dispatch = useDispatch();
     const [loading,setLoading] = useState(false);
-   // const [loggedIn,setLoggedIn] = useState(false);
     const [user,setUser] = useState({
       phone:null,
       password:''
     });
     const [message,setMessage] = useState('')
-    const navigate = useNavigate();
+    const alreadyLogged = useSelector(selectUser)
     
-      const alreadyLogged = useSelector(selectUser)
-      
-
     const handleSubmit = async(e) => {
         e.preventDefault();
         
@@ -30,9 +26,13 @@ const Login = () => {
           try {
             const response = await Axios.post(`http://localhost:3000/api/user/auth/login`,user)
             const data = response.data;
+            console.log(data);
+            
             if(data){
               dispatch(login({data}))
-              dispatch(addAddresses(data.addresses))
+              data.addresses.map((item)=>{
+                dispatch(addAddress(item))
+              })
               setMessage('');
             }else{
               throw new Error(data);

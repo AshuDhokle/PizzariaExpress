@@ -14,7 +14,7 @@ import Menu from './components/Menu'
 import Profile from './components/Profile'
 import Success from './pages/Success'
 import Cancel from './pages/Cancel'
-import Maps from './pages/Maps'
+import Navbar from './components/Navbar'
 function App() {
   const [count, setCount] = useState(0)
 
@@ -29,7 +29,7 @@ function App() {
          <Route path='/profile/:id' element={<Profile/>}/>
          <Route path='/success' element={<Success/>} />
          <Route path='/cancel' element={<Cancel/>}/>        
-         <Route path='/map' element={<Maps/>}/>
+        
         <Route path='/admin/*' element={<Admin/>}>
          <Route path='adminLogin' element={<AdminLogin/>}/>
          <Route path='addPizza' element={<AddPizza />} />

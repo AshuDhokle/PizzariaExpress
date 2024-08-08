@@ -2,7 +2,6 @@ import { useState,useEffect } from 'react';
 import {Drawer,Button,List,Box,ListItem, Divider, Select, MenuItem,InputLabel, FormControl,Badge, Chip, Modal, Typography} from '@mui/material'
 import {useSelector} from 'react-redux'
 import {selectCart} from '../features/cart/cartSlice';
-import {selectUser} from '../features/user/userSlice'
 import { IoCartOutline } from "react-icons/io5";
 import CartCard from './cartCard';
 import {loadStripe} from '@stripe/stripe-js';
@@ -10,6 +9,7 @@ import AddAddress from './AddAddress';
 import axios from 'axios';
 import {couponCodes} from '../utils/coupon'
 import { selectAddress } from '../features/address/addressSlice';
+import { selectUser } from '../features/user/userSlice';
 const CartDrawer = () => {
   const [open, setOpen] = useState(false);
   const cart = useSelector(selectCart);
@@ -18,17 +18,18 @@ const CartDrawer = () => {
   const toggleDrawer = (newOpen) => {
     setOpen(newOpen);
   };
-   
+  const user = useSelector(selectUser); 
   const handlePayment = async() =>{
     try {
       const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
       const body = {
         products : cart,
         price:finalTotal,
-        address: deliveryAddress
+        address: deliveryAddress,
+        userId: user._id
       }
       
-      const response = await axios.post('https//localhost:3000/api/payment/create-checkout-session',body)
+      const response = await axios.post('http://localhost:3000/api/payment/create-checkout-session',body)
       const session = await response.data;
       const result = await stripe.redirectToCheckout({
         sessionId : session.id,
@@ -37,7 +38,7 @@ const CartDrawer = () => {
         throw new Error(result.error)
       }
     } catch (error) {
-      console.log(result.error);
+      console.log(error);
     }
   }
   
@@ -167,7 +168,6 @@ const SelectAddress = ({deliveryAddress,setDeliveryAddress}) =>{
   //   const str = address.street + ', ' + address.city + 
   // }
   const addresses = useSelector(selectAddress);
-  console.log(addresses);
   const handleChange = (e) =>{
     setDeliveryAddress(e.target.value)
   }

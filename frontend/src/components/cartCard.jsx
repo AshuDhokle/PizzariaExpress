@@ -14,7 +14,6 @@ const CartCard = ({item}) => {
           dispatch(addToCart({pizza:item.pizza,size:item.size,quantity:parseInt(item.quantity+1)}))
         }
     }
-    console.log(menu[item.pizza.category]);
     const handleSubtract = (item) =>{
         if(item.quantity<=1){
           handleDispatch(item)

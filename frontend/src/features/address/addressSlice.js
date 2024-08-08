@@ -11,7 +11,6 @@ export const addressSlice = createSlice({
             const newAddressList = action.payload
             let newList = state.address;
             for(let i = 0;i<newAddressList.length;i++){
-                console.log(newAddressList[i]);
                 newList.push(newAddressList[i]);
             }
             state.address = newList;       
@@ -21,6 +20,9 @@ export const addressSlice = createSlice({
             let newList = state.address;
             newList.push(newAddress)
             state.address = newList;
+        },
+        removeAddress:(state,action)=>{
+            state.address = []  
         }
     }
 });

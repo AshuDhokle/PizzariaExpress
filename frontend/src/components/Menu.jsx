@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import {selectPizzas} from '../features/pizzas/pizzaSlice'
 import Navbar from './Navbar';
 import { Box, Stack } from '@mui/system';
-import { Button, ListItem,List,useMediaQuery, Divider, Typography,Slide,Chip } from '@mui/material';
+import { Button, ListItem,List,useMediaQuery, Typography,Slide,Chip } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { FaArrowLeft } from 'react-icons/fa6';
 import { FaArrowRight } from 'react-icons/fa6';
@@ -16,6 +16,8 @@ import { couponCodes } from '../utils/coupon';
 import { useDispatch } from 'react-redux'
 import { addPizzas } from '../features/pizzas/pizzaSlice'
 import { MdOutlineRestaurantMenu } from "react-icons/md";
+import { selectUser } from '../features/user/userSlice';
+import { addAddresses } from '../features/address/addressSlice';
 
 const Menu = () => {
   const [category,setCategory] = useState(1);
@@ -23,6 +25,8 @@ const Menu = () => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
   const dispatch = useDispatch();
   
+  const user = useSelector(selectUser);
+
   useEffect(()=>{
     
     const getPizzas = async() =>{
@@ -53,7 +57,6 @@ const Menu = () => {
   const selectedCategoryFood = pizzaList.filter((item)=>{ return(item.category === category)})
   return (
     <Stack direction='column' sx={{width:1}}>
-      <Navbar/>
       <Stack direction='col' sx={{display:'flex',flexDirection:'column',alignItems:'center', justifyContent:'center'}}>
        <Stack direction={'row'} sx={{my:2,width:0.8 ,borderRadius:2, backgroundColor:'#FF6500',alignItems:'center',justifyContent:'space-around'}} >
         <Box sx={{mx:2}}>

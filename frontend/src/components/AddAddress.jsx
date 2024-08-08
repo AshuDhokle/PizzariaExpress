@@ -12,7 +12,6 @@ import {
 } from '@mui/material';
 import {statesAndUnionTerritories} from '../utils/address.js'
 import { MdOutlineAddLocationAlt } from "react-icons/md";
-
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../features/user/userSlice.js';
@@ -32,7 +31,8 @@ const AddAddress = () => {
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+  
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setAddress(prevAddress => ({
@@ -47,7 +47,6 @@ const AddAddress = () => {
     const response = await axios.put('http://localhost:3000/api/user/update/addAddress',{id:user._id ,type:address.cat, address:addressString});
     if(response){
       dispatch(addAddress({type:address.cat,address:addressString}))
-      
     }
     handleClose();
   };
@@ -136,6 +135,7 @@ const AddAddress = () => {
               Submit
             </Button>
           </form>
+          
         </Box>
       </Modal>
     </div>

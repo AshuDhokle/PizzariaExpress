@@ -9,7 +9,7 @@ const Profile = () => {
   const user = useSelector(selectUser)
   return (
     <div className=''>
-       <Navbar/>
+       
        <div className='p-2' style={{backgroundColor:'#FF8F00'}}>
        <UserProfile user={user}/>
        <OtherDetails user={user}/>

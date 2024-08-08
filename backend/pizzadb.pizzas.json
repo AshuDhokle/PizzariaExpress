@@ -1,0 +1,263 @@
+[{
+  "_id": {
+    "$oid": "65ef49d1987faf611082c5d1"
+  },
+  "name": "Veggie Delight",
+  "size": [
+    "Regular",
+    "Large"
+  ],
+  "price": [
+    300,
+    450
+  ],
+  "img": "https://cdn.shopify.com/s/files/1/0235/7064/5069/products/tpc3_250x250@2x.png?v=1597865259",
+  "veg": true,
+  "category": 1
+},
+{
+  "_id": {
+    "$oid": "65ef49d1987faf611082c5d2"
+  },
+  "name": "BBQ Chicken",
+  "size": [
+    "Medium",
+    "Large"
+  ],
+  "price": [
+    350,
+    500
+  ],
+  "img": "https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_1:1/k%2Farchive%2Fbd84ba2c08f32a70c1c3638c511dd271d365c611",
+  "veg": false,
+  "category": 1
+},
+{
+  "_id": {
+    "$oid": "65ef49d1987faf611082c5d3"
+  },
+  "name": "Supreme",
+  "size": [
+    "Regular",
+    "Large"
+  ],
+  "price": [
+    400,
+    550
+  ],
+  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAp4pLQpr9m3x7_tcudkFyitqSoX9Ah8z1VYorjKlubg&s",
+  "veg": false,
+  "category": 1
+},
+{
+  "_id": {
+    "$oid": "66143bd382d1b4772da71f85"
+  },
+  "name": "Margherita",
+  "size": [
+    "Small",
+    "Medium"
+  ],
+  "price": [
+    99,
+    149
+  ],
+  "img": "https://static.toiimg.com/thumb/56868564.cms?imgsize=1948751&width=800&height=800",
+  "veg": true,
+  "category": 1,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66143c2882d1b4772da71f89"
+  },
+  "name": "Hawaiian Pizza",
+  "size": [
+    "Small",
+    "Medium",
+    "Large"
+  ],
+  "price": [
+    119,
+    169,
+    209
+  ],
+  "img": "https://www.kingarthurbaking.com/sites/default/files/styles/featured_image/public/2020-03/hawaiian-pizza.jpg?itok=a1-_QjRA",
+  "veg": true,
+  "category": 1,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66143ca682d1b4772da71f8d"
+  },
+  "name": "Meat Lover's Pizza",
+  "size": [
+    "Small",
+    "Medium",
+    "Large"
+  ],
+  "price": [
+    129,
+    179,
+    219
+  ],
+  "img": "https://www.queensleeappetit.com/wp-content/uploads/2019/02/Meat-Lovers-Pizza-5-1-480x480.jpg",
+  "veg": false,
+  "category": 1,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6617c7d21fe9992be30a62c5"
+  },
+  "name": "Paneer Tikka Pizza",
+  "size": [
+    "Small",
+    "Medium",
+    "Large"
+  ],
+  "price": [
+    129,
+    179,
+    209
+  ],
+  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQU_0qIpy_yj-xOi78BqjSaKyyrBFc5ku8QDJrArWvmtA&s",
+  "veg": true,
+  "category": 1,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6617c8321fe9992be30a62cb"
+  },
+  "name": "Onion Pizza",
+  "size": [
+    "Small",
+    "Medium",
+    "Large"
+  ],
+  "price": [
+    59,
+    69,
+    79
+  ],
+  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRyfSYyzaKdxcNsKgLcLUVtHrQozOrx6MuLbPObruZXQ&s",
+  "veg": true,
+  "category": 1,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6617c86b1fe9992be30a62d1"
+  },
+  "name": "Tomato",
+  "size": [
+    "Small",
+    "Medium"
+  ],
+  "price": [
+    49,
+    59
+  ],
+  "img": "https://www.cafechococraze.com/wp-content/uploads/2016/06/cheese-tomato.jpg",
+  "veg": true,
+  "category": 1,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6693a86b84a3285739d13df6"
+  },
+  "name": "Combo 1",
+  "size": [
+    "Single"
+  ],
+  "price": [
+    500
+  ],
+  "img": "path_to_combo1_image",
+  "veg": false,
+  "category": 2
+},
+{
+  "_id": {
+    "$oid": "6693a86b84a3285739d13df7"
+  },
+  "name": "Garlic Bread",
+  "size": [
+    "Single"
+  ],
+  "price": [
+    150
+  ],
+  "img": "path_to_garlic_bread_image",
+  "veg": true,
+  "category": 3
+},
+{
+  "_id": {
+    "$oid": "6693a86b84a3285739d13df8"
+  },
+  "name": "Coca Cola",
+  "size": [
+    "250ml",
+    "500ml",
+    "1L"
+  ],
+  "price": [
+    50,
+    80,
+    120
+  ],
+  "img": "path_to_coca_cola_image",
+  "veg": true,
+  "category": 4
+},
+{
+  "_id": {
+    "$oid": "6693a86b84a3285739d13df9"
+  },
+  "name": "Half and Half Pizza",
+  "size": [
+    "Medium",
+    "Large"
+  ],
+  "price": [
+    350,
+    500
+  ],
+  "img": "path_to_half_and_half_image",
+  "veg": false,
+  "category": 5
+},
+{
+  "_id": {
+    "$oid": "6693a86b84a3285739d13dfa"
+  },
+  "name": "Pizza at 99",
+  "size": [
+    "Single"
+  ],
+  "price": [
+    99
+  ],
+  "img": "path_to_pizza_at_99_image",
+  "veg": true,
+  "category": 6
+},
+{
+  "_id": {
+    "$oid": "6693a86b84a3285739d13dfb"
+  },
+  "name": "Chocolate Brownie",
+  "size": [
+    "Single"
+  ],
+  "price": [
+    200
+  ],
+  "img": "path_to_brownie_image",
+  "veg": true,
+  "category": 7
+}]

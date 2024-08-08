@@ -2,7 +2,7 @@ import Stripe from 'stripe';
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export const createPaymentSession = async (req, res) => {
-  const { products,address,price } = req.body;
+  const { products,address,price,userId } = req.body;
   const lineItems = products.map((product) => {
     const isValidUrl = (url) => {
       try {
@@ -36,10 +36,15 @@ export const createPaymentSession = async (req, res) => {
 
       success_url: 'http://localhost:5173/success',
       cancel_url: 'http://localhost:5173/cancel',
-      metadata: {
-        shipping_address: address
-      },
+      metadata:{
+        address:address.address,
+        userId : userId,
+        orderItems: JSON.stringify(lineItems)
+      }
     });
+// This thing is added
+    
+
     // console.log(session);
     res.json({ id: session.id });
   } catch (error) {

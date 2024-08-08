@@ -18,7 +18,9 @@ const orderSchema = new Mongoose.Schema({
     email: { type: String, required: true },
     userId: { type: String, required: true },
     orderItems: [orderItemSchema],
-    shippingAddress: shippingAddressSchema,
+    shippingAddress: {
+        type:String, required:true
+    },
     orderAmount: { type: Number, required: true },
     isDelivered: { type: Boolean, default: false },
     transactionId: { type: String, required: true }

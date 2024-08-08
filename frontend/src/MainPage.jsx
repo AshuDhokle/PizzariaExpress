@@ -1,5 +1,4 @@
-import React,{useEffect,useState} from 'react';
-import axios from 'axios'
+import React from 'react';
 import Navbar from './components/Navbar';
 import { Stack,Box, ImageList, ImageListItem } from '@mui/material';
 import Banner from './components/Banner';
@@ -12,7 +11,6 @@ const MainPage = () => {
   
   return (
     <div className=' h-full'>
-     <Navbar />
      <Stack direction={'column'}>
        <Banner use={'homePage'} contents={contents}/>
        <Box sx={{display:'flex',flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
