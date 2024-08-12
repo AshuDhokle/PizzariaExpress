@@ -25,3 +25,18 @@ export const addAddress = async(req,res)=>{
     res.status(500).json({error:error});
   }
 }
+
+export const getAllAddress = async(req,res)=>{
+  try {
+    const id = req.query.id
+    
+    const response = await User.findById(id).select('addresses');
+    
+    if(response){
+      res.status(200).json(response.addresses);
+    }
+
+  } catch (error) {
+    res.status(500).json({error:error});
+  }
+}

@@ -2,10 +2,9 @@ import Axios from 'axios';
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
-import { selectUser } from '../features/user/userSlice';
-import { login } from '../features/user/userSlice';
+import { selectUser } from '../../features/user/userSlice';
+import { login } from '../../features/user/userSlice';
 import ReactLoading from 'react-loading';
-import { addAddress } from '../features/address/addressSlice';
 
 const Login = () => {
     
@@ -30,9 +29,7 @@ const Login = () => {
             
             if(data){
               dispatch(login({data}))
-              data.addresses.map((item)=>{
-                dispatch(addAddress(item))
-              })
+              
               setMessage('');
             }else{
               throw new Error(data);

@@ -26,39 +26,7 @@ const Admin = () => {
   },[])
   return (
     <div>
-      {
-        admin 
-        ? ( 
-          <div>
-            <div className='p-2 bg-indigo-400 text-white text-start text-xl flex flex-row justify-between'>
-             <div>
-             <h1><span className='text-yellow-200 font-semibold'>Admin: </span>{admin.name}</h1>
-             <h1><span className='text-yellow-200 font-semibold'>Admin ID :</span> {admin.id}</h1>
-             </div>
-             <button onClick={handleLogout}className='bg-red-600 px-4 py-2 rounded-xl shadow-xl m-2 text-lg'>Logout</button>
-            </div>
-
-            <div className='text-white p-2 bg-violet-800 flex flex-row items-center justify-center'>
-             <Link className='m-2' to='/admin/userList'>User List</Link>
-             <Link className='m-2' to='/admin/pizzaList'>Pizza List</Link>
-             <Link className='m-2' to='/admin/addPizza'>Add Pizza</Link>
-             <Link className='m-2' to='/admin/orderList'>Order List</Link>
-            </div>
-          </div>
-      )
-      :(
-        null
-      )
-      }
-
-      <Routes>
-        <Route path='adminLogin' element={<AdminLogin/>}/>
-        <Route path='addPizza' element={<AddPizza />} />
-        <Route path='pizzaList' element={<PizzaList />} />
-        <Route path='userList' element={<UserList />} />
-        <Route path='orderList' element={<OrderList />} />
-        <Route path='editPizza/:id' element={<EditPizza/>}/>
-      </Routes>
+      
     </div>
   )
 }

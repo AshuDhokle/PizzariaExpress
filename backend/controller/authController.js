@@ -48,11 +48,13 @@ export const Signup = async(req,res) =>{
 export const adminLogin = async(req,res) =>{
    try {
       const admin = req.body;
-      const presentAdmin = await Admin.find({id:admin.id});  
-
+      console.log(admin);
+      
+      const presentAdmin = await Admin.findOne({id:admin.id});  
+      console.log(presentAdmin);
+      
       if(presentAdmin) {
-         const matchPass = await bcrypt.compare(admin.password,presentAdmin[0].password)
-         if(matchPass){
+         if(admin.password === presentAdmin.password){
             return res.status(200).json(presentAdmin)
          }else{
             return res.status(401).json('Wrong Password')

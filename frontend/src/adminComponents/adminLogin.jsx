@@ -28,9 +28,9 @@ const AdminLogin = () => {
         try {
             const response = await Axios.post('http://localhost:3000/api/admin/auth/login',admin);
             if(response.status === 200){
-                dispatch(loginAdmin(response.data[0]))
+                dispatch(loginAdmin(response.data))
                 setMessage('')
-                navigate('/admin') 
+                navigate('/adminPanel') 
             }
         } catch (error) {
            if(parseInt(error.response.status) === 401){

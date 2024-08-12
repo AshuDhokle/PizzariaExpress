@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialAdmin = localStorage.getItem('Admin') ? JSON.parse(localStorage.getItem('Admin')) : null;
 
 const initialState = {
-    admin:initialAdmin
+  admin:initialAdmin
 }
 
 

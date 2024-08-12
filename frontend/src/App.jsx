@@ -1,43 +1,30 @@
-import { useState } from 'react'
 import {Routes,Route} from 'react-router-dom'
 import './App.css'
-import Signup from './components/Signup'
-import Login from './components/Login'
+import Signup from './components/Signup/Signup'
+import Login from './components/Login/Login'
 import Admin from './adminComponents/admin'
 import AdminLogin from './adminComponents/adminLogin'
-import AddPizza from './adminComponents/addPizza'
-import PizzaList from './adminComponents/pizzaList'
-import OrderList from './adminComponents/orderList'
-import UserList from './adminComponents/userList'
-import MainPage from './MainPage'
-import Menu from './components/Menu'
-import Profile from './components/Profile'
+import MainPage from './pages/MainPage'
+import Menu from './components/Menu/Menu'
+import Profile from './components/Profile/Profile'
 import Success from './pages/Success'
 import Cancel from './pages/Cancel'
-import Navbar from './components/Navbar'
 function App() {
-  const [count, setCount] = useState(0)
-
+  
   return (
     < div className=''>
       
       <Routes>
-         <Route path='/' element={<MainPage/>}/>
-         <Route path='/menu' element={<Menu/>}/>
-         <Route path='/login' element={<Login/>}/>
-         <Route path='/signup' element={<Signup/>}/>
-         <Route path='/profile/:id' element={<Profile/>}/>
-         <Route path='/success' element={<Success/>} />
-         <Route path='/cancel' element={<Cancel/>}/>        
-        
-        <Route path='/admin/*' element={<Admin/>}>
-         <Route path='adminLogin' element={<AdminLogin/>}/>
-         <Route path='addPizza' element={<AddPizza />} />
-         <Route path='pizzaList' element={<PizzaList />} />
-         <Route path='userList' element={<UserList />} />
-         <Route path='orderList' element={<OrderList />} />
-        </Route>
-     
+        <Route path='/' element={<MainPage/>}/>
+        <Route path='/menu' element={<Menu/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/signup' element={<Signup/>}/>
+        <Route path='/profile/:id' element={<Profile/>}/>
+        <Route path='/success' element={<Success/>} />
+        <Route path='/cancel' element={<Cancel/>}/>        
+
+        <Route path='/adminLogin' element={<AdminLogin/>}/>
+        <Route path='/adminPanel' element={<Admin/>}/>
       </Routes>
     </div>
   )

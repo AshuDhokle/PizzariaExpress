@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { addToCart } from '../features/cart/cartSlice';
+import { addToCart } from '../../features/cart/cartSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { IoCartOutline } from "react-icons/io5";
-import { FormControl, InputLabel, MenuItem, Select,Button, Box } from '@mui/material';
+import { MenuItem, Select,Button, Box } from '@mui/material';
 
 const Cards = ({pizza}) => {
     const dispatch = useDispatch();
@@ -29,12 +28,6 @@ const Cards = ({pizza}) => {
         );
 
         toast('Pizza Added to the cart');
-        // const obj = JSON.stringify(order);
-        // console.log(obj);
-
-        //const response = await axios.post('http://localhost:3000/orders', obj);
-        //console.log(response);
-        //navigate(`/order`);
     };
 
     const handleInputChange = (e) => {

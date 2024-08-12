@@ -2,9 +2,9 @@ import React from 'react'
 import { GrFormSubtract } from "react-icons/gr";
 import { IoIosAdd } from "react-icons/io";
 import { FaLongArrowAltRight } from "react-icons/fa";
-import menu from '../utils/menu';
+import menu from '../../../utils/menu';
 import { useDispatch } from 'react-redux';
-import { removeFromCart,addToCart , selectCart} from '../features/cart/cartSlice';
+import { removeFromCart,addToCart } from '../../../features/cart/cartSlice';
 const CartCard = ({item}) => {
     const dispatch = useDispatch()
     const handleAdd = (item) =>{

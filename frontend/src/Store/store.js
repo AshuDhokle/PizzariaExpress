@@ -3,14 +3,12 @@ import userReducer from '../features/user/userSlice'
 import cartReducer from '../features/cart/cartSlice'
 import adminReducer from '../features/admin/adminSlice'
 import pizzaReducer from '../features/pizzas/pizzaSlice'
-import addressReducer from '../features/address/addressSlice'
 const store = configureStore({
     reducer:{
         user:userReducer,
         cart:cartReducer,
         admin:adminReducer,
-        pizzas:pizzaReducer,
-        address:addressReducer,
+        pizzas:pizzaReducer,      
     },
 })
 

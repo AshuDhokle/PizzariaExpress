@@ -2,9 +2,9 @@ import Axios from 'axios';
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
-import { login } from '../features/user/userSlice';
+import { login } from '../../features/user/userSlice';
 import ReactLoading from 'react-loading';
-import { selectUser } from '../features/user/userSlice';
+import { selectUser } from '../../features/user/userSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const Signup = () => {

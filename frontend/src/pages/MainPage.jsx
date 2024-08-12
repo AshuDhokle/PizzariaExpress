@@ -1,12 +1,10 @@
 import React from 'react';
-import Navbar from './components/Navbar';
 import { Stack,Box, ImageList, ImageListItem } from '@mui/material';
-import Banner from './components/Banner';
-import menu from './utils/menu';
+import Banner from '../components/Banner/Banner';
+import menu from '../utils/menu';
 import { Link } from 'react-router-dom';
-
-import { contents } from './utils/banner';
-import Footer from './components/Footer';
+import { contents } from '../utils/banner';
+import Footer from '../components/Footer/Footer';
 const MainPage = () => {
   
   return (

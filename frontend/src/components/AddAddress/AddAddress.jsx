@@ -10,12 +10,11 @@ import {
   Select,
   MenuItem
 } from '@mui/material';
-import {statesAndUnionTerritories} from '../utils/address.js'
+import {statesAndUnionTerritories} from '../../utils/address.js'
 import { MdOutlineAddLocationAlt } from "react-icons/md";
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from '../features/user/userSlice.js';
-import { addAddress } from '../features/address/addressSlice.js';
+import { selectUser } from '../../features/user/userSlice.js';
 const AddAddress = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
@@ -45,9 +44,7 @@ const AddAddress = () => {
     e.preventDefault();
     const addressString = address.street + ', ' + address.area + ', ' + address.city + ', ' + address.state + ', ' + address.pin
     const response = await axios.put('http://localhost:3000/api/user/update/addAddress',{id:user._id ,type:address.cat, address:addressString});
-    if(response){
-      dispatch(addAddress({type:address.cat,address:addressString}))
-    }
+    
     handleClose();
   };
 
@@ -125,9 +122,9 @@ const AddAddress = () => {
                 onChange={handleChange}
               >
                 {
-                    statesAndUnionTerritories.map((state,idx)=>(
-                        <MenuItem key={idx} value={state}>{state}</MenuItem>
-                    ))
+                  statesAndUnionTerritories.map((state,idx)=>(
+                    <MenuItem key={idx} value={state}>{state}</MenuItem>
+                  ))
                 }
               </Select>
             </FormControl>
