@@ -4,21 +4,9 @@ import { MdDone } from "react-icons/md";
 import { MdOutlinePending } from "react-icons/md";
 import { OrderDiscriptionModel } from './ordersDescriptionModel';
 import { convertDate } from '../../utils/formatDate';
+import { formatOrdersString } from '../../utils/formatOrdersString';
 const OrderDetails = ({ item }) => {
   
-  const formatOrdersString = (orders) =>{
-    let str = "";
-    for(let i = 0;i<orders.length;i++){
-      str += orders[i].name 
-      str += ' - '
-      str += orders[i].size
-      str += ' x ' 
-      str += orders[i].quantity
-      str += ', '; 
-    }
-    return str.slice(0,-2);
-  }
-
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

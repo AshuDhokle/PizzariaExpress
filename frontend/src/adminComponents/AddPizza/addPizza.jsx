@@ -2,7 +2,7 @@ import Axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const AddPizza = () => {
+const AddPizza = ({value,idx}) => {
   
   const navigate = useNavigate();
  
@@ -66,7 +66,10 @@ const AddPizza = () => {
   //Tags-----------------------------------------
  
   return (
-    <div className="max-w-md mx-auto bg-white p-8 rounded-md shadow-md   animate-fade-in">
+    <div className=''>
+    {
+      value === idx && (
+    <div className="mt-20 max-w-md mx-auto bg-white p-8 rounded-md shadow-md   animate-fade-in">  
       <h2 className="text-2xl font-bold mb-4">Add Pizza</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -131,6 +134,11 @@ const AddPizza = () => {
           Add Pizza
         </button>
       </form>
+    </div>
+
+      )
+    }
+    
     </div>
   );
 };

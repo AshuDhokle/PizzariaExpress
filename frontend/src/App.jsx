@@ -2,13 +2,13 @@ import {Routes,Route} from 'react-router-dom'
 import './App.css'
 import Signup from './components/Signup/Signup'
 import Login from './components/Login/Login'
-import Admin from './adminComponents/admin'
 import AdminLogin from './adminComponents/adminLogin'
 import MainPage from './pages/MainPage'
 import Menu from './components/Menu/Menu'
 import Profile from './components/Profile/Profile'
 import Success from './pages/Success'
 import Cancel from './pages/Cancel'
+import AdminPannel from './adminComponents/admin'
 function App() {
   
   return (
@@ -23,8 +23,8 @@ function App() {
         <Route path='/success' element={<Success/>} />
         <Route path='/cancel' element={<Cancel/>}/>        
 
-        <Route path='/adminLogin' element={<AdminLogin/>}/>
-        <Route path='/adminPanel' element={<Admin/>}/>
+        <Route path='admin/adminLogin' element={<AdminLogin/>}/>
+        <Route path='admin/adminPanel' element={<AdminPannel/>}/>
       </Routes>
     </div>
   )
