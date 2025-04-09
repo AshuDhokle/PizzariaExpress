@@ -20,7 +20,6 @@ export const addAddress = async(req,res)=>{
     if(updatedUser){
       res.status(200).json({updatedUser});
     }
-    //res.send('er'); 
   } catch (error) {
     res.status(500).json({error:error});
   }
@@ -29,6 +28,7 @@ export const addAddress = async(req,res)=>{
 export const getAllAddress = async(req,res)=>{
   try {
     const id = req.query.id
+    console.log(id);
     
     const response = await User.findById(id).select('addresses');
     

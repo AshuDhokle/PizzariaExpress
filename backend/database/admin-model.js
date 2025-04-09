@@ -5,7 +5,6 @@ const admin = new Mongoose.Schema({
     email:String,
     phone:Number,
     password:String,
-   // adderess:String
 })
 
 const Admin = Mongoose.model('admin',admin);

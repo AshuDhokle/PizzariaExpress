@@ -31,8 +31,13 @@ app.post('/webhook', Express.raw({ type: 'application/json' }), async(request, r
   }
 
   // Handle the event
+  console.log(event.type);
+  
   if (event.type === 'checkout.session.completed') {
+    
     const checkoutSessionCompleted = event.data.object;
+    console.log(checkoutSessionCompleted);
+    
     const orderItems = JSON.parse(checkoutSessionCompleted.metadata.orderItems);
     let orderItemsArray = []
      
@@ -46,7 +51,8 @@ app.post('/webhook', Express.raw({ type: 'application/json' }), async(request, r
         }
       )
     }) 
-
+    console.log(orderItemsArray);
+    
     
     const newOrder = new Orders({
       name : checkoutSessionCompleted.customer_details.name,

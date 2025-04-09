@@ -15,7 +15,6 @@ export const getPizzas = async(req,res) =>{
 export const getPizzaById = async(req,res) => {
      const id = req.params.id;
      try {
-         //console.log(id);
          const response = await Pizza.findOne({_id:id});
          if(response){
           return res.status(200).json(response);
@@ -41,7 +40,6 @@ export const updatePizzaById = async(req,res) => {
 
 export const deletePizzaById = async(req,res)=>{
      const id = req.params.id;
-      console.log(id);
       try {
          const response = await Pizza.deleteOne({_id : id});
          if(response){
@@ -55,7 +53,6 @@ export const deletePizzaById = async(req,res)=>{
 export const addPizzaAdmin = async(req,res)=>{
      try {
           const data = req.body;
-         // console.log(data);
           const newPizza = new Pizza({
              name:data.name,
              size:data.size,
@@ -65,7 +62,6 @@ export const addPizzaAdmin = async(req,res)=>{
           })
  
           const response = await newPizza.save();
-         // console.log(response);
           if(response){
              return res.status(200).json(response)
           }

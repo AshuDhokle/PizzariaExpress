@@ -11,7 +11,6 @@ const user = new Mongoose.Schema({
     phone:{type:Number,required:true, unique:true},
     addresses:{type:[addressSchema]},
     password:{type:String,required:true},
-   // adderess:String
 })
 
 

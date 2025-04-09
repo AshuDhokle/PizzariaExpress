@@ -16,7 +16,7 @@ export const Login = async(req,res) =>{
         }
      }
   } catch (error) {
-     return res.status(400).json('Someting Went wrong')
+     return res.status(500).json('Someting Went wrong')
   }
 }
 
@@ -25,6 +25,7 @@ export const Signup = async(req,res) =>{
         const obj = req.body
         
         const existingUser = await User.findOne({phone:obj.phone})
+        
         if(!existingUser){
            const newUser = new User({
              name:obj.name,
@@ -37,11 +38,12 @@ export const Signup = async(req,res) =>{
            if(response){
             return res.status(200).json(response)
            }
+           
         }else{
            return res.status(403).json('User Already exists');
         }
      } catch (error) {
-        return res.status(400).send('Someting Went Wrong')
+        return res.status(500).send('Someting Went Wrong')
      }
 }
 
@@ -54,14 +56,16 @@ export const adminLogin = async(req,res) =>{
       console.log(presentAdmin);
       
       if(presentAdmin) {
-         if(admin.password === presentAdmin.password){
+         const comparePass = await bcrypt.compare(admin.password, presentAdmin.password)
+         if(comparePass){
+            
             return res.status(200).json(presentAdmin)
          }else{
             return res.status(401).json('Wrong Password')
          }
       }
    } catch (error) {
-      return res.status(400).json('Something went wrong');
+      return res.status(500).json('Something went wrong');
    }
 }
 
@@ -70,19 +74,20 @@ export const adminSignup = async(req,res)=>{
       const admin = req.body;
       
       const hashedPass = await bcrypt.hash(admin.password,8);
+      
       const newAdmin = new Admin({
-         id:uuidv4(),
+         id:admin.id,
          name:admin.name,
          email:admin.email,
          phone:admin.phone,
          password:hashedPass
       })
-
+      
       const response = await newAdmin.save();
       if(response){
          return res.status(200).json(response);
       }         
    } catch (error) {
-      return res.status(400).json('Something went wrong')
+      return res.status(500).json('Something went wrong')
    }
 }

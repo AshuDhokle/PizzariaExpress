@@ -8,7 +8,7 @@ export const getOrders = async(req,res) =>{
            return res.status(404).json("No orders placed yet")
         }
      } catch (error) {
-           return res.status(400).json('Something went wrong')
+         return res.status(500).json('Something went wrong')
      }
 }
 
@@ -19,18 +19,19 @@ export const getAllOrdersForAdmin = async(req,res) =>{
          return res.status(200).json(ordersList);
       }   
    } catch (error) {
-      return res.status(400).json('Something went wrong')
+      return res.status(500).json('Something went wrong')
    }
 }
 
 export const updateOrderById = async(req,res) =>{
    const id = req.params.id;
+   
    try {
       const response = await Orders.updateOne({_id:id},{$set:{isDelivered:true}});
       if(response){
          return res.status(200).json(response);
       }
    } catch (error) {
-      return res.status(400).json(error);
+      return res.status(500).json(error);
    }
 }

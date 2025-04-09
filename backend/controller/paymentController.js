@@ -42,10 +42,7 @@ export const createPaymentSession = async (req, res) => {
         orderItems: JSON.stringify(lineItems)
       }
     });
-// This thing is added
-    
 
-    // console.log(session);
     res.json({ id: session.id });
   } catch (error) {
     console.error('Error creating Stripe session:', error);
