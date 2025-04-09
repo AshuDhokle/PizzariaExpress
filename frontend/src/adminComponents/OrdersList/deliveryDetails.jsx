@@ -3,16 +3,16 @@ import { IoMdCheckbox } from "react-icons/io";
 import UpdateDeliveryPopup from './updateDeliveryPopup';
 import React,{ useState } from "react";
 import axios from "axios";
+import Loading from "react-loading";
 export const DeliveryDetails = (props) =>{
     const [check,setCheck] = useState(props.delivered);
     const [trigger,setTrigger] = useState(false);
     const [loading, setLoading] = useState(false);
     const updateDelivery = async(id) =>{
       setLoading(true);
-      console.log(props);
       
       try {
-        const response = await axios.put(`http://localhost:3000/api/admin/order/${id}`)  
+        await axios.put(`https://pizzaria-express-six.vercel.app/api/admin/order/${id}`)  
       } catch (error) {
         console.log(error);
       }  finally {
@@ -28,6 +28,7 @@ export const DeliveryDetails = (props) =>{
   
     return(
       <div>
+        {loading && <Loading type="spin" width={50} height={50}/>}
         {
         check 
           ? <IoMdCheckbox className='size-6' />

@@ -32,16 +32,13 @@ const Signup = () => {
     }
 
     const handleSubmit = async(e) => {
-        e.preventDefault();
-        // Add your signup logic here, for example, calling an API to register the user
-        //console.log(newUser);
-                                   
+        e.preventDefault();                           
         
         const sendData = async()=>{
           try {
             setLoding(true);
             //const obj = JSON.stringify(newUser)
-            const response = await Axios.post('http://localhost:3000/api/user/auth/signup',newUser);
+            const response = await Axios.post('https://pizzaria-express-six.vercel.app/api/user/auth/signup',newUser);
             const data = response.data;
 
             if(data){

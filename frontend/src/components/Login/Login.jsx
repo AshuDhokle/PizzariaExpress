@@ -23,7 +23,7 @@ const Login = () => {
         const fetchData = async()=>{
           setLoading(true)
           try {
-            const response = await Axios.post(`http://localhost:3000/api/user/auth/login`,user)
+            const response = await Axios.post(`https://pizzaria-express-six.vercel.app/api/user/auth/login`,user)
             const data = response.data;
             
             if(data){

@@ -8,7 +8,7 @@ export const Food = ({items,loading}) =>{
       <div className='px-10 w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 border-l-2 border-gray-300 flex-wrap'>
           
           {loading ? (
-            <ReactLoading type='spin' color='blue' height={100} width={100} />
+            <div className='w-full flex flex-col items-center justify-center'><ReactLoading type='spin' color='blue' height={100} width={100} /> </div>
           ) : items.length > 0 ? (
             items.map((pizza, idx) => <Cards key={idx} pizza={pizza} />)
           ) : (

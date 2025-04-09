@@ -15,7 +15,7 @@ const Row = ({ pizza }) => {
     const handleDelete = async () => {
         setLoading(true);
         try {
-            const response = await axios.delete(`http://localhost:3000/api/admin/pizza/${pizza._id}`)    
+            const response = await axios.delete(`https://pizzaria-express-six.vercel.app/api/admin/pizza/${pizza._id}`)    
             const data = await response.data;
             console.log(data);
             

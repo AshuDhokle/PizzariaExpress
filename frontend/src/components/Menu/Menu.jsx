@@ -23,7 +23,7 @@ const Menu = () => {
     const getPizzas = async() =>{
       try {
         setLoading(true)
-        const response = await axios.get('http://localhost:3000/api/user/pizza');
+        const response = await axios.get('https://pizzaria-express-six.vercel.app/api/user/pizza');
         if(response){
           dispatch(addPizzas(response.data))
         }

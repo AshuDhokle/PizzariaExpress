@@ -12,7 +12,7 @@ export const SelectAddress = ({deliveryAddress,setDeliveryAddress}) =>{
     useEffect(()=>{
       const fetchAddresses = async()=>{
         try {
-          const response = await axios.get('http://localhost:3000/api/user/update/getAllAddress',{params: {id:user._id}}) 
+          const response = await axios.get('https://pizzaria-express-six.vercel.app/api/user/update/getAllAddress',{params: {id:user._id}}) 
           if(response){
             setAddresses(response.data)  
           }

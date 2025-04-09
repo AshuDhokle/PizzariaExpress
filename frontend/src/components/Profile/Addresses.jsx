@@ -14,7 +14,7 @@ export const Addresses = ({currentTab,index,user}) =>{
     const getAddresses = async()=>{
       setLoading(true);
       try {
-        const response = await axios.get(`http://localhost:3000/api/user/update/getAllAddress/?id=${user._id}`)
+        const response = await axios.get(`https://pizzaria-express-six.vercel.app/api/user/update/getAllAddress/?id=${user._id}`)
         const data = await response.data
         setAddresses(data)
       } catch (error) {

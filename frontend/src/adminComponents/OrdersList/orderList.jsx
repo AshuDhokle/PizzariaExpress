@@ -14,7 +14,7 @@ const OrderList = ({value,idx}) => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await Axios.get('http://localhost:3000/api/admin/order/orderList');
+        const response = await Axios.get(`https://pizzaria-express-six.vercel.app/api/admin/order/orderList`);
         setOrderList(response.data); 
         setLoading(false);
       } catch (error) {

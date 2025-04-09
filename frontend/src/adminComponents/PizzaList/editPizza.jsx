@@ -15,7 +15,7 @@ const EditPizza = ({ editTrig, Pizza, setEditTrig }) => {
 
   const handleSubmit = async () => {
     //e.preventDefault();
-    const response = await Axios.put(`http://localhost:3000/api/admin/pizza/${id}`, pizza);
+    const response = await Axios.put(`https://pizzaria-express-six.vercel.app/api/admin/pizza/${id}`, pizza);
     console.log(response);
 
 

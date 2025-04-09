@@ -25,7 +25,7 @@ const AdminLogin = () => {
     const handleSubmit = async (e) =>{
         e.preventDefault()
         try {
-            const response = await Axios.post('http://localhost:3000/api/admin/auth/login',admin);
+            const response = await Axios.post(`https://pizzaria-express-six.vercel.app/api/admin/auth/login`,admin);
             if(response.status === 200){
                 dispatch(loginAdmin(response.data))
                 setMessage('')

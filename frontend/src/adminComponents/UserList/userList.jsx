@@ -10,7 +10,7 @@ const UserList = ({value,idx}) => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await Axios.get('http://localhost:3000/api/admin/users');
+        const response = await Axios.get(`https://pizzaria-express-six.vercel.app/api/admin/users`);
         setUserList(response.data);
         setLoading(false);
       } catch (error) {

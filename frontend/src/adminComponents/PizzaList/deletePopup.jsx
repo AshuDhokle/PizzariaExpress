@@ -2,7 +2,6 @@
 import React from "react";
 import Loading from "react-loading";
 const DeletePopup = (props) => {
-  console.log(props);
   
   return (
     props.trig ? (

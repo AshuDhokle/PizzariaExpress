@@ -10,7 +10,8 @@ const PizzaList = ({ value, idx }) => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await axios.get('http://localhost:3000/api/admin/pizza');
+        
+        const response = await axios.get(`https://pizzaria-express-six.vercel.app/api/admin/pizza`);
         setPizzaList(response.data);
       } catch (error) {
         console.error('Error fetching pizza data:', error);

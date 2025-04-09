@@ -11,7 +11,7 @@ const Orders = ({currentTab,index}) => {
         setLoading(true);
         try {
           const userId = JSON.parse(localStorage.getItem('User'))._id;
-          const response = await axios.get(`http://localhost:3000/api/user/orders/getOrders`,{
+          const response = await axios.get(`https://pizzaria-express-six.vercel.app/api/user/orders/getOrders`,{
             params:{
               id:userId,
             }

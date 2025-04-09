@@ -1,10 +1,7 @@
 import Axios from 'axios';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Loading from "react-loading";
 const AddPizza = ({value,idx}) => {
-  
-  const navigate = useNavigate();
   
   const [formData, setFormData] = useState({
     name: '',
@@ -40,7 +37,7 @@ const AddPizza = ({value,idx}) => {
       price:p,
     } 
     try {
-      const response = await Axios.post('http://localhost:3000/api/admin/pizza/addPizza',data)
+      const response = await Axios.post(`https://pizzaria-express-six.vercel.app/api/admin/pizza/addPizza`,data)
       console.log(response.status);
       
       if(response.status === 200){

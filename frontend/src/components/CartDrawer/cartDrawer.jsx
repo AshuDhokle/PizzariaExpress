@@ -1,14 +1,13 @@
 import { useState,useEffect } from 'react';
 import {Drawer,Button,List,Box,ListItem, Divider, Select, MenuItem,InputLabel, FormControl,Badge, Chip, Modal, Typography} from '@mui/material'
 import {useSelector} from 'react-redux'
-import {selectCart} from '../features/cart/cartSlice';
-import {selectUser} from '../features/user/userSlice'
+import {selectCart} from '../../features/cart/cartSlice';
 import { IoCartOutline } from "react-icons/io5";
-import CartCard from './cartCard';
+import CartCard from './CartCards/cartCard';
 import {loadStripe} from '@stripe/stripe-js';
-import AddAddress from './AddAddress';
+import AddAddress from '../AddAddress/AddAddress'
 import axios from 'axios';
-import {couponCodes} from '../utils/coupon'
+import {couponCodes} from '../../utils/coupon'
 import { selectAddress } from '../features/address/addressSlice';
 const CartDrawer = () => {
   const [open, setOpen] = useState(false);
