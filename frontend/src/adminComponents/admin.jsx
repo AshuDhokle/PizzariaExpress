@@ -24,7 +24,7 @@ const AdminPannel = () => {
     }
   },[])
   return (
-    <div>
+    <div className='p-4 h-[600px] overflow-y-scroll'>
       <Tabs value={value} onChange={handleChange} aria-label="basic tabs example"
         sx={{display:'flex', flexDirection:'row', backgroundColor:'#1E201E'}}
       >

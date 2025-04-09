@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import Orders from "../Orders/Orders"
+import Orders from "./Orders/Orders"
 import { Box,Tab,Tabs } from '@mui/material'
-import { Addresses } from './Addresses'
+import { Addresses } from './Addresses.jsx'
 export const OtherDetails = ({user}) => {
     
     const [currentTab,setCurrentTab] = useState(0);
 
     return(
-        <Box sx={{m:5,p:5,backgroundColor:'white'}}>
+        <Box sx={{m:5,p:5,backgroundColor:'white', height:600}}>
            <Box sx={{ borderBottom: 1 }}>
             <Tabs  aria-label="basic tabs example">
              <Tab sx={{backgroundColor:currentTab === 0 ? '#FF4C4C' : ''}} label="Orders" onClick={()=>setCurrentTab(0)} />

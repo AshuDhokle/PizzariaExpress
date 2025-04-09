@@ -31,9 +31,9 @@ const Orders = ({currentTab,index}) => {
     },[])
   
     return (
-    <>
+    <div className=''>
     {
-      currentTab === index && <div className='p-2'>
+      currentTab === index && <div className='p-2 overflow-y-scroll h-[510px]'>
         {
           loading 
            ? <p>Loading...</p>
@@ -47,7 +47,7 @@ const Orders = ({currentTab,index}) => {
         }
       </div>
     }
-    </>
+    </div>
   )
 }
 

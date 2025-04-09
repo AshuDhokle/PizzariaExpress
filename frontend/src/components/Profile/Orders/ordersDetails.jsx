@@ -3,8 +3,8 @@ import Button from '@mui/material/Button';
 import { MdDone } from "react-icons/md";
 import { MdOutlinePending } from "react-icons/md";
 import { OrderDiscriptionModel } from './ordersDescriptionModel';
-import { convertDate } from '../../utils/formatDate';
-import { formatOrdersString } from '../../utils/formatOrdersString';
+import { convertDate } from '../../../utils/formatDate';
+import { formatOrdersString } from '../../../utils/formatOrdersString';
 const OrderDetails = ({ item }) => {
   
   const [open, setOpen] = React.useState(false);
@@ -12,7 +12,7 @@ const OrderDetails = ({ item }) => {
   const handleClose = () => setOpen(false);
 
   return (
-   <div className='border-2 m-2 p-2'>
+   <div className='border-2 m-2 p-2 overflow-x-scroll'>
       <div className='flex flex-row'>
       <img src='/images/delivery.png' className='size-24' />
       <div className='flex flex-row m-1 p-1 w-full items-center justify-between'>

@@ -9,14 +9,13 @@ import { DeliveryDetails } from './deliveryDetails';
 const OrderList = ({value,idx}) => {
   const [orderList, setOrderList] = useState([]);
   const [loading, setLoading] = useState(false);
+  
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
         const response = await Axios.get('http://localhost:3000/api/admin/order/orderList');
-        setOrderList(response.data);
-        console.log(response.data);
-        
+        setOrderList(response.data); 
         setLoading(false);
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -57,7 +56,7 @@ const OrderList = ({value,idx}) => {
                   <TableRow key={idx}>
                     <TableCell ><UserDetails name={order.name} email={order.email} userId={order.userId}/></TableCell>
                     <TableCell ><OrdersDetails createdAt={order.createdAt} amount={order.orderAmount} items={order.orderItems} shipping={order.shippingAddress}/></TableCell>
-                    <TableCell ><DeliveryDetails delivered={order.isDelivered}/></TableCell>
+                    <TableCell ><DeliveryDetails delivered={order.isDelivered} id={order._id}/></TableCell>
                   </TableRow>
                 );
               })}

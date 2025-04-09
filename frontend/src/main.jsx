@@ -6,6 +6,7 @@ import App from './App.jsx'
 import store from './Store/store.js'
 import './index.css'
 import Navbar from './components/Navbar/Navbar.jsx'
+import Footer from './components/Footer/Footer.jsx'
 const Page = () =>{
 
   return (
@@ -13,6 +14,7 @@ const Page = () =>{
     <BrowserRouter>
     <Navbar/>
     <App />
+    <Footer/>
     </BrowserRouter>
     </Provider>
   )

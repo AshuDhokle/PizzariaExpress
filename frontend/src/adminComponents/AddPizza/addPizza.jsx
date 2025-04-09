@@ -1,17 +1,18 @@
 import Axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import Loading from "react-loading";
 const AddPizza = ({value,idx}) => {
   
   const navigate = useNavigate();
- 
-
+  
   const [formData, setFormData] = useState({
     name: '',
     image: '',
     isVeg: false,
   });
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prevData) => ({
@@ -22,6 +23,7 @@ const AddPizza = ({value,idx}) => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
+    setLoading(true);
     const s = [];
     const p = [];
     for(let i = 0;i<tags.length;i++){
@@ -39,11 +41,15 @@ const AddPizza = ({value,idx}) => {
     } 
     try {
       const response = await Axios.post('http://localhost:3000/api/admin/pizza/addPizza',data)
+      console.log(response.status);
+      
       if(response.status === 200){
-        navigate('/admin/pizzaList')
+        window.location.reload()
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
      
   };
@@ -129,9 +135,9 @@ const AddPizza = ({value,idx}) => {
         </div>
         <button
           type="submit"
-          className="w-full bg-indigo-600 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className="w-full flex flex-col items-center justify-center bg-indigo-600 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
-          Add Pizza
+          {loading ? <Loading type='spin' width={100} height={100}/> : "Add Pizza"}
         </button>
       </form>
     </div>

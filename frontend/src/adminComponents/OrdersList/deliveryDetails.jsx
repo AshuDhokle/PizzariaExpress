@@ -2,16 +2,24 @@ import { MdCheckBoxOutlineBlank } from "react-icons/md";
 import { IoMdCheckbox } from "react-icons/io";
 import UpdateDeliveryPopup from './updateDeliveryPopup';
 import React,{ useState } from "react";
+import axios from "axios";
 export const DeliveryDetails = (props) =>{
     const [check,setCheck] = useState(props.delivered);
     const [trigger,setTrigger] = useState(false);
+    const [loading, setLoading] = useState(false);
     const updateDelivery = async(id) =>{
-        const response = await Axios.put(`http://localhost:3000/api/admin/order/${id}`)
-        if(response){
-          console.log(response);
-          setCheck(true);
-          setTrigger(false)
-        }           
+      setLoading(true);
+      console.log(props);
+      
+      try {
+        const response = await axios.put(`http://localhost:3000/api/admin/order/${id}`)  
+      } catch (error) {
+        console.log(error);
+      }  finally {
+        setCheck(true);
+        setTrigger(false)
+        setLoading(true);
+      }          
     }
     
     const resetTrig = () =>{

@@ -12,8 +12,6 @@ import AdminPannel from './adminComponents/admin'
 function App() {
   
   return (
-    < div className=''>
-      
       <Routes>
         <Route path='/' element={<MainPage/>}/>
         <Route path='/menu' element={<Menu/>}/>
@@ -26,7 +24,7 @@ function App() {
         <Route path='admin/adminLogin' element={<AdminLogin/>}/>
         <Route path='admin/adminPanel' element={<AdminPannel/>}/>
       </Routes>
-    </div>
+   
   )
 }
 

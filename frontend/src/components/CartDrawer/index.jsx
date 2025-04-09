@@ -9,17 +9,35 @@ import axios from 'axios';
 import { selectUser } from '../../features/user/userSlice';
 import { Subtotal } from './subtotal';
 import { SelectAddress } from './selectAddress';
+import Loading from 'react-loading';
+
 const CartDrawer = () => {
-  const [open, setOpen] = useState(false);
   const cart = useSelector(selectCart);
+  
+  const [open, setOpen] = useState(false);
   const [finalTotal,setFinalTotal] = useState();
   const [deliveryAddress,setDeliveryAddress] = useState();
+  const [loading, setLoading] = useState(false);
+
   const toggleDrawer = (newOpen) => {
     setOpen(newOpen);
   };
   const user = useSelector(selectUser); 
   const handlePayment = async() =>{
+    setLoading(true);
     try {
+      const cartSize = cart.length;
+      
+      if(cartSize > 2) {
+        alert('Remove one item!!!')
+        return;
+      }
+      
+      if(deliveryAddress === undefined || deliveryAddress === null || deliveryAddress.length === 0 ){
+        alert('Select Address')
+        return ;
+      }
+
       const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
       const body = {
         products : cart,
@@ -38,6 +56,8 @@ const CartDrawer = () => {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
  }
   
@@ -67,7 +87,7 @@ const CartDrawer = () => {
         <div className='flex flex-col p-2'>
         <Divider/>
         <Subtotal finalTotal = {finalTotal} setFinalTotal={setFinalTotal} toggleDrawer={toggleDrawer}/>
-        <Button sx={{mb:2,color:'white',backgroundColor:'#06D001', ":hover":{backgroundColor:'#059212'}}} onClick={handlePayment}> Checkout</Button>
+        <Button sx={{mb:2,color:'white',backgroundColor:'#06D001', ":hover":{backgroundColor:'#059212'}}} onClick={handlePayment}> {loading ? <Loading type='spin' color='white' height={30} width={30}/> : 'checkout'} </Button>
         </div>
         </Drawer>
     </div>

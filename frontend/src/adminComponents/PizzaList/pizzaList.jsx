@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import ReactLoading from 'react-loading';
 import { Table, TableContainer, TableBody, TableHead, TableRow, TableCell } from '@mui/material';
 import Row from './Row';
@@ -10,11 +10,11 @@ const PizzaList = ({ value, idx }) => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await Axios.get('http://localhost:3000/api/admin/pizza');
+        const response = await axios.get('http://localhost:3000/api/admin/pizza');
         setPizzaList(response.data);
-        setLoading(false);
       } catch (error) {
         console.error('Error fetching pizza data:', error);
+      } finally {
         setLoading(false);
       }
     };

@@ -25,11 +25,9 @@ const Login = () => {
           try {
             const response = await Axios.post(`http://localhost:3000/api/user/auth/login`,user)
             const data = response.data;
-            console.log(data);
             
             if(data){
-              dispatch(login({data}))
-              
+              dispatch(login({data}))   
               setMessage('');
             }else{
               throw new Error(data);
@@ -47,9 +45,7 @@ const Login = () => {
           }
 
         }
-
         fetchData();
-         
     };
     
     const handleChange = (e) =>{

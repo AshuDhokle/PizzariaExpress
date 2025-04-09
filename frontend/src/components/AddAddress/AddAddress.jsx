@@ -44,6 +44,7 @@ const AddAddress = () => {
     e.preventDefault();
     const addressString = address.street + ', ' + address.area + ', ' + address.city + ', ' + address.state + ', ' + address.pin
     const response = await axios.put('http://localhost:3000/api/user/update/addAddress',{id:user._id ,type:address.cat, address:addressString});
+    console.log(response);
     
     handleClose();
   };

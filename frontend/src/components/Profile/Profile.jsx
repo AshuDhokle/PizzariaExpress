@@ -6,12 +6,9 @@ import { OtherDetails } from './OtherDetails'
 const Profile = () => {
   const user = useSelector(selectUser)
   return (
-    <div className=''>
-       
-       <div className='p-2' style={{backgroundColor:'#FF8F00'}}>
+    <div className='flex flex-col' style={{backgroundColor:'#FF8F00'}}>
        <UserProfile user={user}/>
        <OtherDetails user={user}/>
-       </div>
     </div>
   )
 }

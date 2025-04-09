@@ -5,25 +5,36 @@ import { MdOutlineEdit } from "react-icons/md";
 import { GoTrash } from "react-icons/go";
 import DeletePopup from './deletePopup';
 import EditPizza from './editPizza';
+import {toast} from 'react-toastify'
+import axios from 'axios';
 const Row = ({ pizza }) => {
     const [open, setOpen] = useState(false);
     const [trigger, setTrigger] = useState(false);
     const [editTrig, setEditTrig] = useState(false);
-    const handleDelete = async (id) => {
-
-        const response = await Axios.delete(`http://localhost:3000/api/admin/pizza/${id}`)
-        if (response.status === 200) {
-            toast('Pizza Deleted SuccessFully')
-            setTrigger(false);
+    const [loading, setLoading] = useState(false);
+    const handleDelete = async () => {
+        setLoading(true);
+        try {
+            const response = await axios.delete(`http://localhost:3000/api/admin/pizza/${pizza._id}`)    
+            const data = await response.data;
+            console.log(data);
+            
+            if (data.acknowledged) {
+                toast('Pizza Deleted SuccessFully')
+                setTrigger(false);
+            }
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
             window.location.reload(true);
         }
+        
     }
-    const resetTrigger = () => {
-        setTrigger(false);
-    }
-    const resetEditTrig = () => {
-        setEditTrig(false);
-    }
+   
+    // const resetEditTrig = () => {
+    //     setEditTrig(false);
+    // }
     return (
         <>
             <TableRow>
@@ -37,10 +48,10 @@ const Row = ({ pizza }) => {
                 </TableCell>
                 <TableCell>
                     <GoTrash onClick={() => setTrigger(true)} className='cursor-pointer size-8' />
-                    <DeletePopup trig={trigger} resetTrig={resetTrigger} deleteHandler={handleDelete} id={pizza._id} />
+                    <DeletePopup trig={trigger} setTrigger={setTrigger} deleteHandler={handleDelete} loading={loading} />
                 </TableCell>
             </TableRow>
-            <TableRow>
+            <TableRow >
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={4}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box sx={{ margin: 1 }}>

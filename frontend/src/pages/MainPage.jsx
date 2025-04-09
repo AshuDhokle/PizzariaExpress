@@ -27,7 +27,6 @@ const MainPage = () => {
           </ImageList>
 
        </Box>
-       <Footer/>
      </Stack>
     </div>
   );

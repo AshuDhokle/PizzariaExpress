@@ -2,7 +2,6 @@ import React from 'react'
 import { GrFormSubtract } from "react-icons/gr";
 import { IoIosAdd } from "react-icons/io";
 import { FaLongArrowAltRight } from "react-icons/fa";
-import menu from '../../../utils/menu';
 import { useDispatch } from 'react-redux';
 import { removeFromCart,addToCart } from '../../../features/cart/cartSlice';
 const CartCard = ({item}) => {
@@ -33,7 +32,6 @@ const CartCard = ({item}) => {
          <FaLongArrowAltRight className='size-6 text-green-500' />
          
          <h1 className='m-1 text-lg font-nunito font-semibold'>{item.pizza.name}</h1>
-         <p className='mx-1 text-gray-500 text-sm'>{menu[item.pizza.category-1].name}</p>
          </div>
          <p className='font-semibold'>{item.price}/-</p>
          </div>

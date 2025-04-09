@@ -1,24 +1,24 @@
-import {createSlice} from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    pizzas : [],
+    pizzas: [],
 }
 
 const pizzaSlice = createSlice({
-    name:'pizzas',
+    name: 'pizzas',
     initialState,
-    reducers:{
-        addPizzas: (state,actions)=>{
+    reducers: {
+        addPizzas: (state, actions) => {
             const currPizzaList = actions.payload;
-            state.pizzas = currPizzaList; 
-          //  console.log(state.pizzas);
+            state.pizzas = currPizzaList;
+
         },
-        filterPizzas: (state,actions)=>{
+        filterPizzas: (state, actions) => {
             let filteredPizzaList;
-            if(actions.payload === 'Veg')
-                filteredPizzaList = state.pizzas.filter((item) => {item.veg === true;})
-            else if(actions.payload === 'Non-Veg')
-                filteredPizzaList = state.pizzas.filter((item) => {item.veg === false;})
+            if (actions.payload === 'Veg')
+                filteredPizzaList = state.pizzas.filter((item) => { item.veg === true; })
+            else if (actions.payload === 'Non-Veg')
+                filteredPizzaList = state.pizzas.filter((item) => { item.veg === false; })
             else
                 filteredPizzaList = state.pizzas
             state.pizzas = filteredPizzaList;
@@ -28,7 +28,7 @@ const pizzaSlice = createSlice({
 })
 
 
-export const {addPizzas,filterPizzas} = pizzaSlice.actions
+export const { addPizzas, filterPizzas } = pizzaSlice.actions
 
 export const selectPizzas = (state) => state.pizzas;
 
