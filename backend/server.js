@@ -16,7 +16,7 @@ import { Orders } from './database/orders-model.js';
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const app = Express();
 
-const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET || "whsec_744727900012d356f75ad64fa8547aeca7208da19a73c8022a224d38f051fb94";
+const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
 app.post('/webhook', Express.raw({ type: 'application/json' }), async(request, response) => {
   const sig = request.headers['stripe-signature'].toString();
