@@ -31,7 +31,7 @@ const AdminLogin = () => {
             const response = await Axios.post(`https://pizzaria-express-six.vercel.app/api/admin/auth/login`,admin);
             if(response.status === 200){
                 dispatch(loginAdmin(response.data))
-                setMessage('')
+                toast.success('Logged In')
                 navigate('/admin/adminPanel') 
             }
         } catch (error) {
