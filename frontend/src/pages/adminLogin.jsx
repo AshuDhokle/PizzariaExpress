@@ -3,6 +3,8 @@ import React, { useState,useEffect } from 'react';
 import {useNavigate} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
 import {loginAdmin,selectAdmin} from '../features/admin/adminSlice'
+import Loading from 'react-loading';
+import { toast, ToastContainer } from 'react-toastify';
 const AdminLogin = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -10,7 +12,7 @@ const AdminLogin = () => {
         id:"",
         password:"",
     })
-    const [message,setMessage] = useState('');
+    const [loading, setLoading] = useState(false);
     const logedAdmin = useSelector(selectAdmin)
 
     useEffect(()=>{
@@ -23,24 +25,28 @@ const AdminLogin = () => {
         setAdmin((a)=>({...a,[e.target.name]:e.target.value}))
     }
     const handleSubmit = async (e) =>{
-        e.preventDefault()
+        e.preventDefault();
+        setLoading(true);
         try {
             const response = await Axios.post(`https://pizzaria-express-six.vercel.app/api/admin/auth/login`,admin);
             if(response.status === 200){
                 dispatch(loginAdmin(response.data))
                 setMessage('')
-                navigate('/adminPanel') 
+                navigate('/admin/adminPanel') 
             }
         } catch (error) {
            if(parseInt(error.response.status) === 401){
-            setMessage('Wrong Password !!!')
+            toast.error('Wrong Password !!!')
            }   
+        } finally {
+            setLoading(false);
         }
 
     }
     
     return (
         <div className="m-4 rounded-xl min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+          <ToastContainer/>
           <div className="max-w-md w-full space-y-8">
           <h1 className='text-xl text-white font-semibold px-4 py-2 bg-gradient-to-r from-green-500 to-sky-400 rounded-xl shadow-xl'>Admin Login</h1>  
           <p className='text-sm text-red-500'>{message}</p>
@@ -65,7 +71,7 @@ const AdminLogin = () => {
                <div>
                 <button type="submit"
                     className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        Sign in
+                       { loading ? <Loading type='spin' color='#F5EEDC' width={25} height={25}/> : "Sign in" }
                 </button>
                </div>
               </form>
