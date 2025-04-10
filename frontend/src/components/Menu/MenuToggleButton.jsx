@@ -25,10 +25,10 @@ export const MenuToggleButton = ({category,setCategory}) =>{
   
     
     return (
-      <div className=' self-center flex flex-col sticky bottom-10  '>
+      <div className='self-center flex flex-col sticky bottom-10 mb-10 z-100'>
       {
         isSmallScreen && open &&
-       <List ref={newRef} sx={{p:2, m:1, display:'flex', flexDirection:'column',backgroundColor:'#686D76',borderRadius:2}}>
+       <List ref={newRef} sx={{z:100, p:2, m:1,display:'inline', flexDirection:'column',backgroundColor:'#686D76',borderRadius:2}}>
         {
           menu.map(item=>(
             <ListItem key={item.id} sx={{mb:1,width:"200px",borderRadius:2, backgroundColor:category === item.id?"#DC5F00":"",":hover":{backgroundColor:"#DC5F00"}}}>

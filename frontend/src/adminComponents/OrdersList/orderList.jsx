@@ -31,7 +31,7 @@ const OrderList = ({value,idx}) => {
 
     <div className=' m-4 flex flex-col items-center justify-center  '>
       {loading ? (
-        <ReactLoading type='spin' color='blue' height={200} width={200} />
+        <ReactLoading type='spin' color='#6DE1D2' height={100} width={100} />
       )
        :
         ( 

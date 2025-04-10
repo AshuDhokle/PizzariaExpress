@@ -2,10 +2,11 @@ import Axios from 'axios';
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
-import { login } from '../../features/user/userSlice';
+import { login } from '../features/user/userSlice';
 import ReactLoading from 'react-loading';
-import { selectUser } from '../../features/user/userSlice';
-import { ToastContainer, toast } from 'react-toastify';
+import { selectUser } from '../features/user/userSlice';
+import { toast, ToastContainer } from 'react-toastify';
+import Loading from 'react-loading';
 import 'react-toastify/dist/ReactToastify.css';
 const Signup = () => {
   
@@ -14,7 +15,6 @@ const Signup = () => {
     //const navigate = useNavigate();  
     const [confirmPassword, setConfirmPassword] = useState('');
     const [loading,setLoding] = useState(false);
-    const [message,setMessage] = useState('');
     const [registered,setRegistered] = useState(false);
     const [newUser,setNewUser] = useState({
       name:'',
@@ -48,7 +48,7 @@ const Signup = () => {
                 })
                )
                
-              setMessage('Registered Successfully')
+              toast.success('Registered Successfully')
               setRegistered(true)
             }else {
               throw new Error(data)
@@ -56,9 +56,9 @@ const Signup = () => {
 
           } catch (error) {
             if(error.response.status===403){
-              setMessage('User Already Exists! Please try different phone number');
+              toast.error('User Already Exists! Please try different phone number');
             }else{
-              setMessage('Someting went wrong!')
+              toast.error('Someting went wrong!')
             }
           }finally{
             setLoding(false);
@@ -82,9 +82,7 @@ const Signup = () => {
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign up for an account</h2>
            </div>
           }
-           {loading && <ReactLoading type='spin' color='blue' height={200} width={200}/>}
-           {message && <h1 className='flex flex-col items-center justify-center'>{message}</h1>}
-
+  
            {
             (registered || alreadyLogged)
             ?  <div className='flex flex-col items-center justify-center'>
@@ -137,7 +135,7 @@ const Signup = () => {
 
               <div>
                 <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        Sign up
+                      {loading ? <Loading type='spin' width={20} height={20}/> : "Sign Up"}
                 </button>
               </div>
               </form>

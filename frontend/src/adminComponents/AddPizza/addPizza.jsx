@@ -38,7 +38,6 @@ const AddPizza = ({value,idx}) => {
     } 
     try {
       const response = await Axios.post(`https://pizzaria-express-six.vercel.app/api/admin/pizza/addPizza`,data)
-      console.log(response.status);
       
       if(response.status === 200){
         window.location.reload()
@@ -92,11 +91,11 @@ const AddPizza = ({value,idx}) => {
        
         <div className="tags-input-container">
           <label htmlFor='price-size'>Prices and Sizes : </label><br/>
-          <input onKeyDown={handleKeyDown} id='price-size' type="text" className="shadow appearance-none border rounded w-full py-2 px-3 mb-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Price-Size (e.g. 100-small) "  />
+          <input onKeyDown={handleKeyDown} id='price-size' type="text" className="shadow appearance-none border rounded w-full py-2 px-3 mb-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Price-Size (e.g. 100-small) and press enter to add"  />
             { tags.map((tag, index) => (
-                <div className="px-2 bg-slate-300 w-40 m-2 rounded-xl" key={index}>
-                    <span className="text">{tag}</span>
-                    <span className="close" onClick={() => removeTag(index)}>&times;</span>
+                <div className="p-2 w-40 m-2 rounded-xl bg-teal-400" key={index}>
+                    <span className="font-nunito text-xl text-white font-semibold">{tag}</span>
+                    <span className="close mx-2 text-2xl font-bold text-zinc-700 cursor-pointer hover:text-zinc-300" onClick={() => removeTag(index)}>&times;</span>
                 </div>
             )) }
             
@@ -134,7 +133,7 @@ const AddPizza = ({value,idx}) => {
           type="submit"
           className="w-full flex flex-col items-center justify-center bg-indigo-600 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
-          {loading ? <Loading type='spin' width={100} height={100}/> : "Add Pizza"}
+          {loading ? <Loading type='spin' color='#FBE4D6' width={25} height={25}/> : "Add Pizza"}
         </button>
       </form>
     </div>

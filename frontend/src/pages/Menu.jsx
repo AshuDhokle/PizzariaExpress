@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import {selectPizzas} from '../../features/pizzas/pizzaSlice'
+import {selectPizzas} from '../features/pizzas/pizzaSlice'
 import { Box, Stack } from '@mui/system';
-import { Button, ListItem,List,useMediaQuery, Typography,Slide,Chip } from '@mui/material';
+import { Button, ListItem,List,useMediaQuery, Typography} from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import menu from '../../utils/menu';
+import menu from '../utils/menu';
 import { useDispatch } from 'react-redux'
-import { addPizzas } from '../../features/pizzas/pizzaSlice'
-import { Coupon } from './Coupon.';
-import { Food } from './Food';
-import { MenuToggleButton } from './MenuToggleButton';
+import { addPizzas } from '../features/pizzas/pizzaSlice'
+import { Coupon } from '../components/Menu/Coupon';
+import {Food} from '../components/Menu/Food'
+import { MenuToggleButton } from '../components/Menu/MenuToggleButton';
 const Menu = () => {
   const [category,setCategory] = useState(1);
   const theme = useTheme();
@@ -58,7 +58,7 @@ const Menu = () => {
         </Box>
         <Coupon/>
        </Stack>
-       <Stack direction={isSmallScreen?'column':'row'} sx={{p:2,width:1}}>
+       <Stack direction={isSmallScreen?'column':'row'} sx={{p:2,width:1,minHeight:500}}>
         
         <Box sx={{width:0.16,mt:1,height:'fit-content',p:1,borderRadius:3 ,display:isSmallScreen? 'none' : 'inline',position:'sticky',top:100}}>
           <List>

@@ -2,10 +2,10 @@ import React, { useEffect,useState } from 'react'
 import {useSelector} from 'react-redux'
 import { selectAdmin} from '../features/admin/adminSlice'
 import { useNavigate} from 'react-router-dom'
-import AddPizza from './AddPizza/addPizza'
-import PizzaList from './PizzaList/pizzaList'
-import OrderList from './OrdersList/orderList'
-import UserList from './UserList/userList'
+import AddPizza from '../adminComponents/AddPizza/addPizza'
+import PizzaList from '../adminComponents/PizzaList/pizzaList'
+import OrderList from '../adminComponents/OrdersList/orderList'
+import UserList from '../adminComponents/UserList/userList'
 import { Tabs,Tab } from '@mui/material'
 const AdminPannel = () => {
   
@@ -24,7 +24,7 @@ const AdminPannel = () => {
     }
   },[])
   return (
-    <div className='p-4 h-[600px] overflow-y-scroll'>
+    <div className='p-4 h-[610px] overflow-y-scroll'>
       <Tabs value={value} onChange={handleChange} aria-label="basic tabs example"
         sx={{display:'flex', flexDirection:'row', backgroundColor:'#1E201E'}}
       >

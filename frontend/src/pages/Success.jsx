@@ -6,15 +6,14 @@ import { Button } from '@mui/material';
 
 const Success = () => {
   const navigate = useNavigate();
-  const cart = useSelector(selectCart)
   const handleClick = () =>{
         
     navigate('/');
   }
     
   return (
-    <div>
-        <h1>Payment Done!</h1>
+    <div className='p-10 h-[595px] flex flex-col items-center justify-center'>
+        <h1 className='text-5xl m-2 font-nunito font-bold'>Payment Done!</h1>
         <Button onClick={handleClick} >Order More</Button>
     </div>
   )

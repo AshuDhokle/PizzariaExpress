@@ -2,9 +2,10 @@ import Axios from 'axios';
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
-import { selectUser } from '../../features/user/userSlice';
-import { login } from '../../features/user/userSlice';
-import ReactLoading from 'react-loading';
+import { selectUser } from '../features/user/userSlice';
+import { login } from '../features/user/userSlice';
+import Loading from 'react-loading';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Login = () => {
     
@@ -28,17 +29,17 @@ const Login = () => {
             
             if(data){
               dispatch(login({data}))   
-              setMessage('');
+              toast.success('Logged in');
             }else{
               throw new Error(data);
             }
           }catch (error) {
             if(error.response.status === 401){
-              setMessage('Wrong Credentials')
+              toast.error('Wrong Credentials')
             }else if(error.response.status === 404){
-              setMessage('User not found')
+              toast.error('User not found')
             }else{
-              setMessage('Someting went Wrong')
+              toast.error('Someting went Wrong')
             }
           }finally{
             setLoading(false)
@@ -55,13 +56,13 @@ const Login = () => {
 
     return (
         <div className="m-4 rounded-xl min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+          <ToastContainer/>
           <div className="max-w-md w-full space-y-8">
             <div>
               {
                 (alreadyLogged) ? <h1 className='text-center font-bold text-xl'>Logged In</h1>:<h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
               }
-             {loading && <ReactLoading type='spin' color='blue' height={200} width={200}/> }
-             {message.length>0 && <p className='text-red-400 font-light'>{message}</p> } 
+            
           </div>
           { alreadyLogged
               ?<div className='flex flex-col items-center justify-center'>
@@ -87,7 +88,7 @@ const Login = () => {
                <div>
                 <button type="submit"
                       className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            Sign in
+                      {loading ? <Loading type='spin' width={20} height={20}/> : "Sign in"}
                 </button>
                </div>
               </form>

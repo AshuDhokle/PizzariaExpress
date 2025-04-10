@@ -12,7 +12,9 @@ const DeletePopup = (props) => {
           <div className="flex justify-end">
             <button onClick={() => props.deleteHandler()} className="bg-red-500 text-white px-4 py-2 rounded-md mr-2">Yes</button>
             <button onClick={() => props.setTrigger(false)} className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md">No</button>
-           {props.loading && <Loading type="spin" width={100} height={100}/>}
+           <div className="m-2">
+            {props.loading && <Loading type="spin" color="#1DCD9F" width={25} height={25}/>}
+           </div>
           </div>
         </div>
       </div>
