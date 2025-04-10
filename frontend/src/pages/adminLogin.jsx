@@ -49,7 +49,6 @@ const AdminLogin = () => {
           <ToastContainer/>
           <div className="max-w-md w-full space-y-8">
           <h1 className='text-xl text-white font-semibold px-4 py-2 bg-gradient-to-r from-green-500 to-sky-400 rounded-xl shadow-xl'>Admin Login</h1>  
-          <p className='text-sm text-red-500'>{message}</p>
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
                 <div className="rounded-md shadow-sm -space-y-px">
                  <div>
